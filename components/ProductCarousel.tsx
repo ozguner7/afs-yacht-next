@@ -4,12 +4,10 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { productsData, Product } from "@/data/products";
-import { useLanguage } from "./LanguageContext";
 import { useTheme } from "./ThemeContext";
-import { ChevronRight, ArrowRight, Anchor, Shield, Wind, Diamond, Star, Check, ArrowLeft } from "./icons";
+import { Check, ArrowLeft, ArrowRight } from "./icons";
 
 export const ProductCarousel = () => {
-    const { t } = useLanguage();
     const { darkMode } = useTheme();
 
     // Group products by category
@@ -172,7 +170,7 @@ export const ProductCarousel = () => {
                                 return (
                                     <button
                                         key={idx}
-                                        ref={el => itemsRef.current[idx] = el}
+                                        ref={(el) => { itemsRef.current[idx] = el }}
                                         onClick={() => jumpToCategory(idx % len)}
                                         className={`
                                             whitespace-nowrap font-serif transition-colors duration-500
@@ -267,7 +265,7 @@ export const ProductCarousel = () => {
                     {/* Mobile View - Reduced Height */}
                     <div className="lg:hidden relative h-[300px]">
                         <div className="overflow-hidden rounded-sm relative h-full">
-                            {currentProducts.map((product, index) => (
+                            {currentProducts.map((product) => (
                                 <Link
                                     href={`/urunler/${product.slug}`}
                                     key={product.id}

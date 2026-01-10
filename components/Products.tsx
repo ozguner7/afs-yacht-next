@@ -4,17 +4,16 @@
 import Link from "next/link";
 import { useTheme } from "./ThemeContext";
 import { useLanguage } from "./LanguageContext";
-import { Sun, Diamond, Feather, Ban, Anchor, Shield, Wind, Scissors, ArrowRight } from "./icons";
-import { useState } from "react";
+import { Sun, Diamond, Feather, Ban, Anchor, Shield, Wind } from "./icons";
+
 
 export const Products = () => {
     const { darkMode } = useTheme();
     const { t } = useLanguage();
-    const bgMain = darkMode ? 'bg-brand-navy' : 'bg-slate-50';
-    const cardBg = 'bg-transparent';
+
     const headingColor = darkMode ? 'text-white' : 'text-slate-900';
     const subTextColor = darkMode ? 'text-slate-400' : 'text-slate-600';
-    const specLabelColor = darkMode ? 'text-brand-gold' : 'text-slate-500';
+
 
     const products = [
         {

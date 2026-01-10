@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "./ThemeContext";
 import { useLanguage } from "./LanguageContext";
-import { Globe, Sun, Moon, ChevronRight } from "./icons";
+import { Sun, Moon, ChevronRight } from "./icons";
 import { flags, Language } from "../data/translations";
 
 export const Navbar = () => {

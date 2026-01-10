@@ -4,7 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTheme } from "./ThemeContext";
 import { useLanguage } from "./LanguageContext";
-import { ArrowRight, Star, ChevronDown, Check, ChevronRight, Anchor, X } from "./icons";
+import { ArrowRight, Star, Check, ChevronRight, X } from "./icons";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import DatePicker from "react-datepicker";
@@ -496,18 +496,6 @@ const FormContent = () => {
                 <div className={`absolute top-1/2 left-0 h-1 bg-brand-gold -z-10 -translate-y-1/2 transition-all duration-500 rounded-full`} style={{ width: `${((step - 1) / 2) * 100}%` }}></div>
 
                 {[1, 2, 3].map((s) => {
-                    // Check if this step is reachable
-                    let isReachable = false;
-                    if (s < step) isReachable = true; // Always allow going back
-                    if (s === step) isReachable = true;
-                    if (s === step + 1) { // Can we advance to next?
-                        if (step === 1 && isStep1Valid) isReachable = true;
-                        if (step === 2 && isStep2Valid) isReachable = true;
-                    }
-                    if (s === 3 && step === 1) { // Can we skip from 1 to 3? Only if 1 AND 2 are valid (but 2 depends on choice? No, just validate)
-                        // This is tricky. Step 2 requires input. So usually can't skip 2 unless it's valid.
-                        if (isStep1Valid && isStep2Valid) isReachable = true;
-                    }
                     // Simplified Reachability: 
                     // Step 1: Always reachable
                     // Step 2: Reachable if Step 1 is valid

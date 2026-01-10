@@ -24,8 +24,7 @@ export async function POST(request: Request) {
         const { formData, selectedProducts } = body;
 
         const apiKey = process.env.BREVO_API_KEY;
-        const senderEmail = process.env.BREVO_SENDER_EMAIL || 'info@afsyacht.com';
-        const adminEmail = process.env.BREVO_ADMIN_EMAIL || 'ozguner@afsyacht.com';
+
 
         if (!apiKey) return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
 
@@ -74,7 +73,7 @@ export async function POST(request: Request) {
         });
 
         return NextResponse.json({ success: true });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
 }

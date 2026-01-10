@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { translations, Language, flags } from "../data/translations";
+import { translations, Language } from "../data/translations";
 
 interface LanguageContextType {
     language: Language;
@@ -33,6 +33,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     useEffect(() => {
         const saved = localStorage.getItem('language') as Language;
         if (saved && translations[saved]) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setLanguageState(saved);
         }
     }, []);

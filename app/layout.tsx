@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope, Playfair_Display } from "next/font/google";
-import { ThemeProvider } from "@/components/ThemeContext";
-import { ThemeWrapper } from "@/components/ThemeWrapper";
+
 import { Providers } from "@/components/Providers";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -37,7 +36,9 @@ export default function RootLayout({
         className={`${manrope.variable} ${playfair.variable} antialiased transition-colors duration-500`}
       >
         <Providers>
+          <Navbar />
           {children}
+          <Footer />
           <FloatingWhatsapp />
         </Providers>
       </body>
