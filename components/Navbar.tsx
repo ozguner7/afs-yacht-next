@@ -48,10 +48,43 @@ export const Navbar = () => {
                 </div>
                 <div className="hidden md:flex items-center space-x-8">
                     <Link href="/" className={`text-sm uppercase tracking-widest transition-colors duration-300 font-medium ${textColor} ${hoverColor}`}>ANASAYFA</Link>
-                    <Link href="/koleksiyon" className={`text-sm uppercase tracking-widest transition-colors duration-300 font-medium ${textColor} ${hoverColor}`}>{t('nav_collection')}</Link>
+
+                    {/* Corporate Dropdown */}
+                    <div className="relative group">
+                        <button className={`text-sm uppercase tracking-widest transition-colors duration-300 font-medium flex items-center gap-1 ${textColor} ${hoverColor}`}>
+                            KURUMSAL
+                            <ChevronRight size={14} className="group-hover:rotate-90 transition-transform duration-300" />
+                        </button>
+                        <div className="absolute top-full left-0 mt-6 w-56 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
+                            <div className={`rounded-sm shadow-2xl border-t-2 border-brand-gold overflow-hidden ${darkMode ? 'bg-brand-navy border-x border-b border-slate-800' : 'bg-white border-x border-b border-slate-100'}`}>
+                                <Link href="/hakkimizda" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>Hakkımızda</Link>
+                                <Link href="/kalite-politikasi" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>Kalite Politikamız</Link>
+                                <Link href="/gizlilik-politikasi" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('footer_privacy')}</Link>
+                                <Link href="/kvkk" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>KVKK Aydınlatma Metni</Link>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Collection Dropdown */}
+                    <div className="relative group">
+                        <Link href="/koleksiyon" className={`text-sm uppercase tracking-widest transition-colors duration-300 font-medium flex items-center gap-1 ${textColor} ${hoverColor}`}>
+                            {t('nav_collection')}
+                            <ChevronRight size={14} className="group-hover:rotate-90 transition-transform duration-300" />
+                        </Link>
+                        <div className="absolute top-full left-0 mt-6 w-64 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
+                            <div className={`rounded-sm shadow-2xl border-t-2 border-brand-gold overflow-hidden ${darkMode ? 'bg-brand-navy border-x border-b border-slate-800' : 'bg-white border-x border-b border-slate-100'}`}>
+                                <Link href="/koleksiyon#hooks" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('footer_col_hooks')}</Link>
+                                <Link href="/koleksiyon#fenders" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('cat_fenders')}</Link>
+                                <Link href="/koleksiyon#lines" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('cat_fender_lines')}</Link>
+                                <Link href="/koleksiyon#covers" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('cat_fender_covers')}</Link>
+                                <Link href="/koleksiyon#cleats" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('footer_col_cleats')}</Link>
+                                <Link href="/koleksiyon#ladders" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('footer_col_ladders')}</Link>
+                                <Link href="/koleksiyon#dinghy-hangers" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('cat_dinghy_hangers')}</Link>
+                            </div>
+                        </div>
+                    </div>
                     <Link href="/blog" className={`text-sm uppercase tracking-widest transition-colors duration-300 font-medium ${textColor} ${hoverColor}`}>{t('nav_blog')}</Link>
                     <Link href="/iletisim" className={`text-sm uppercase tracking-widest transition-colors duration-300 font-medium ${textColor} ${hoverColor}`}>{t('nav_contact')}</Link>
-
                     <Link href="/teklif" className={`px-6 py-2 text-xs uppercase tracking-widest transition-all duration-300 font-bold bg-brand-gold text-white hover:bg-brand-gold/80 block`}>{t('nav_quote')}</Link>
                 </div>
 

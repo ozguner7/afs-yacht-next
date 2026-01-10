@@ -21,33 +21,39 @@ export default function KoleksiyonPage() {
 
     const categories = [
         {
+            id: 'hooks',
             title: t('footer_col_hooks'), // Usturmaça askıları
-            products: productsData // Link existing products here
+            products: productsData.filter(p => p.category === 'hook')
         },
         {
-
+            id: 'fenders',
             title: t('cat_fenders'), // Usturmaçalar
-            products: []
+            products: productsData.filter(p => p.category === 'fender')
         },
         {
+            id: 'covers',
             title: t('cat_fender_covers'), // Usturmaça kılıfları
-            products: []
+            products: productsData.filter(p => p.category === 'cover')
         },
         {
+            id: 'lines',
             title: t('cat_fender_lines'), // Usturmaça bağlama halatı
-            products: []
+            products: productsData.filter(p => p.category === 'line')
         },
         {
+            id: 'cleats',
             title: t('footer_col_cleats'), // Koç boynuzu
-            products: []
+            products: productsData.filter(p => p.category === 'cleat')
         },
         {
+            id: 'ladders',
             title: t('footer_col_ladders'), // Merdivenler
-            products: []
+            products: productsData.filter(p => p.category === 'ladder')
         },
         {
+            id: 'dinghy-hangers',
             title: t('cat_dinghy_hangers'), // Bot bağlama askıları
-            products: []
+            products: productsData.filter(p => p.category === 'dinghy-hanger')
         }
     ];
 
@@ -61,7 +67,7 @@ export default function KoleksiyonPage() {
 
                 <div className="space-y-24">
                     {categories.map((category, idx) => (
-                        <div key={idx} className="animate-fade-in-up" style={{ animationDelay: `${idx * 100}ms` }}>
+                        <div key={idx} id={category.id} className="animate-fade-in-up scroll-mt-32" style={{ animationDelay: `${idx * 100}ms` }}>
                             <h2 className={`text-2xl md:text-3xl font-serif mb-10 pl-6 border-l-4 border-brand-gold text-brand-gold font-medium`}>
                                 {category.title}
                             </h2>
@@ -84,7 +90,7 @@ export default function KoleksiyonPage() {
                                             </div>
                                             <div className="p-6 text-center">
                                                 <h3 className={`text-xl font-serif font-bold mb-2 ${headingColor} group-hover:text-brand-gold transition-colors`}>{product.name}</h3>
-                                                
+
                                             </div>
                                         </Link>
                                     ))}

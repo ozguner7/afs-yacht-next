@@ -11,7 +11,7 @@ export const Footer = () => {
         <footer className={`py-20 bg-brand-navy border-t border-slate-900 text-slate-300 relative overflow-hidden`}>
             <div className="absolute -top-40 -right-40 w-96 h-96 bg-brand-gold/5 rounded-full blur-3xl"></div>
             <div className="container mx-auto px-6 text-center">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
                     <div className="md:col-span-1 flex flex-col gap-6">
                         <div className="flex flex-row items-center justify-center gap-4 h-40">
                             <img src="/AFS Yahct.svg" alt="AFS Yacht" className="h-full w-auto object-contain shrink-0" />
@@ -23,12 +23,25 @@ export const Footer = () => {
                             </span>
                         </div>
                     </div>
-                    <div className="md:pl-12">
+                    <div className="md:pl-6">
                         <h4 className="text-white text-sm uppercase tracking-widest mb-6 font-bold text-brand-gold/80 h-6 flex items-center justify-center">{t('nav_collection')}</h4>
                         <ul className="space-y-3 text-sm font-light">
-                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/koleksiyon">{t('footer_col_hooks')}</Link></li>
-                            <li className="hover:text-brand-gold cursor-pointer transition-colors">{t('footer_col_cleats')}</li>
-                            <li className="hover:text-brand-gold cursor-pointer transition-colors">{t('footer_col_ladders')}</li>
+                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/koleksiyon#hooks">{t('footer_col_hooks')}</Link></li>
+                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/koleksiyon#fenders">{t('cat_fenders')}</Link></li>
+                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/koleksiyon#lines">{t('cat_fender_lines')}</Link></li>
+                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/koleksiyon#covers">{t('cat_fender_covers')}</Link></li>
+                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/koleksiyon#cleats">{t('footer_col_cleats')}</Link></li>
+                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/koleksiyon#ladders">{t('footer_col_ladders')}</Link></li>
+                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/koleksiyon#dinghy-hangers">{t('cat_dinghy_hangers')}</Link></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 className="text-white text-sm uppercase tracking-widest mb-6 font-bold text-brand-gold/80 h-6 flex items-center justify-center">KURUMSAL</h4>
+                        <ul className="space-y-3 text-sm font-light">
+                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/hakkimizda">Hakkımızda</Link></li>
+                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/kalite-politikasi">Kalite Politikamız</Link></li>
+                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/gizlilik-politikasi">{t('footer_privacy')}</Link></li>
+                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/kvkk">KVKK Aydınlatma Metni</Link></li>
                         </ul>
                     </div>
                     <div>
