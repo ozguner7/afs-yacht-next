@@ -5,10 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { productsData, Product } from "@/data/products";
 import { useTheme } from "./ThemeContext";
+import { useLanguage } from "./LanguageContext";
 import { Check, ArrowLeft, ArrowRight } from "./icons";
 
 export const ProductCarousel = () => {
     const { darkMode } = useTheme();
+    const { t, language } = useLanguage();
 
     // Group products by category
     const categoriesMap = productsData.reduce((acc, product) => {
@@ -21,13 +23,13 @@ export const ProductCarousel = () => {
 
     // Define category order and display names
     const categoryOrder: { key: string; label: string }[] = [
-        { key: 'hook', label: 'Usturmaça Askıları' },
-        { key: 'fender', label: 'Usturmaçalar' },
-        { key: 'line', label: 'Halatlar' },
-        { key: 'cover', label: 'Kılıflar' },
-        { key: 'cleat', label: 'Koç Boynuzları' },
-        { key: 'ladder', label: 'Merdivenler' },
-        { key: 'dinghy-hanger', label: 'Bot Askıları' }
+        { key: 'hook', label: t('footer_col_hooks') },
+        { key: 'fender', label: t('cat_fenders') },
+        { key: 'line', label: t('cat_lines') },
+        { key: 'cover', label: t('cat_fender_covers') },
+        { key: 'cleat', label: t('footer_col_cleats') },
+        { key: 'ladder', label: t('footer_col_ladders') },
+        { key: 'dinghy-hanger', label: t('cat_dinghy_hangers') }
     ].filter(cat => categoriesMap[cat.key] && categoriesMap[cat.key].length > 0);
 
     const len = categoryOrder.length;
@@ -139,13 +141,13 @@ export const ProductCarousel = () => {
         const topSpecs = (product.specs || []).slice(0, 3);
         return topSpecs.map(spec => ({
             icon: <Check size={16} />,
-            label: "Özellik",
+            label: t('feature_label'),
             value: spec
         }));
     };
 
     return (
-        <section className={`py-12 overflow-hidden relative transition-colors duration-500Grouped ${darkMode ? 'bg-slate-900' : 'bg-slate-50'}`}>
+        <section key={language} className={`py-12 overflow-hidden relative transition-colors duration-500Grouped ${darkMode ? 'bg-slate-900' : 'bg-slate-50'}`}>
             <div className="container mx-auto px-6 relative min-h-[400px] flex flex-col justify-center">
 
                 {/* Centered Category Navigation - Sliding infinite strip */}
@@ -282,7 +284,7 @@ export const ProductCarousel = () => {
                                         <div className="absolute bottom-0 left-0 w-full p-6">
                                             <h3 className="text-xl font-serif font-bold text-white mb-2">{product.name}</h3>
                                             <div className="w-full block text-center bg-brand-gold text-white px-4 py-3 rounded-sm font-bold uppercase tracking-widest text-xs">
-                                                İnceleyin
+                                                {t('view_details_btn')}
                                             </div>
                                         </div>
                                     </div>

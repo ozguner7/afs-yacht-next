@@ -119,7 +119,11 @@ export const translations: Record<Language, Record<string, string>> = {
         cat_fender_covers: "Usturmaça Kılıfları",
         cat_dinghy_hangers: "Bot Bağlama Askıları",
         cat_fender_lines: "Usturmaça Bağlama Halatı",
-        error_submission: "Bir hata oluştu. Lütfen tekrar deneyiniz."
+        error_submission: "Bir hata oluştu. Lütfen tekrar deneyiniz.",
+        hero_subtitle: "AFS Yacht | Usturmaça Askısı",
+        cat_lines: "Halatlar",
+        feature_label: "Özellik",
+        view_details_btn: "İnceleyin"
     },
     EN: {
         nav_collection: "Collection",
@@ -236,7 +240,11 @@ export const translations: Record<Language, Record<string, string>> = {
         cat_fender_covers: "Fender Covers",
         cat_dinghy_hangers: "Dinghy Hangers",
         cat_fender_lines: "Fender Lines",
-        error_submission: "An error occurred. Please try again."
+        error_submission: "An error occurred. Please try again.",
+        hero_subtitle: "AFS Yacht | Fender Hook",
+        cat_lines: "Lines",
+        feature_label: "Feature",
+        view_details_btn: "View Details"
     },
     ES: {
         nav_collection: "Colección",
@@ -352,7 +360,11 @@ export const translations: Record<Language, Record<string, string>> = {
         cat_fender_covers: "Fundas para Defensas",
         cat_dinghy_hangers: "Colgadores para Botes",
         cat_fender_lines: "Líneas de Defensa",
-        error_submission: "Ocurrió un error. Por favor inténtelo de nuevo."
+        error_submission: "Ocurrió un error. Por favor inténtelo de nuevo.",
+        hero_subtitle: "AFS Yacht | Gancho para Defensas",
+        cat_lines: "Cabos",
+        feature_label: "Característica",
+        view_details_btn: "Ver Detalles"
     },
     PT: {
         nav_collection: "Coleção",
@@ -467,7 +479,11 @@ export const translations: Record<Language, Record<string, string>> = {
         cat_fender_covers: "Capas de Defensas",
         cat_dinghy_hangers: "Cabides de Bote",
         cat_fender_lines: "Cabos de Defesa",
-        error_submission: "Ocorreu um erro. Por favor tente novamente."
+        error_submission: "Ocorreu um erro. Por favor tente novamente.",
+        hero_subtitle: "AFS Yacht | Gancho de Defensa",
+        cat_lines: "Cabos",
+        feature_label: "Característica",
+        view_details_btn: "Ver Detalhes"
     },
     IT: {
         nav_collection: "Collezione",
@@ -582,7 +598,11 @@ export const translations: Record<Language, Record<string, string>> = {
         cat_fender_covers: "Copri Parabordi",
         cat_dinghy_hangers: "Ganci per Tender",
         cat_fender_lines: "Cime per Parabordi",
-        error_submission: "Si è verificato un errore. Riprova."
+        error_submission: "Si è verificato un errore. Riprova.",
+        hero_subtitle: "AFS Yacht | Gancio Parasabordi",
+        cat_lines: "Cime",
+        feature_label: "Caratteristica",
+        view_details_btn: "Vedi Dettagli"
     },
     NL: {
         nav_collection: "Collectie",
@@ -697,7 +717,11 @@ export const translations: Record<Language, Record<string, string>> = {
         cat_fender_covers: "Stootwil Hoezen",
         cat_dinghy_hangers: "Bijboot Haken",
         cat_fender_lines: "Stootwil Lijnen",
-        error_submission: "Er is een fout opgetreden. Probeer het opnieuw."
+        error_submission: "Er is een fout opgetreden. Probeer het opnieuw.",
+        hero_subtitle: "AFS Yacht | Stootwil Haak",
+        cat_lines: "Lijnen",
+        feature_label: "Kenmerk",
+        view_details_btn: "Details Bekijken"
     },
     AR: {
         nav_collection: "المجموعة",
@@ -807,6 +831,10 @@ export const translations: Record<Language, Record<string, string>> = {
         pontos_spec_1: "Harken 491 Cam cleat",
         pontos_spec_2: "Ø6-16 mm قطر الحبل",
         error_submission: "حدث خطأ. يرجى المحاولة مرة أخرى.",
+        hero_subtitle: "AFS Yacht | خطاف الرفارف",
+        cat_lines: "حبال",
+        feature_label: "ميزة",
+        view_details_btn: "عرض التفاصيل",
         argos_spec_2: "Ø3-13 mm قطر الحبل",
         collection_page_title: "مجموعة AFS Yacht",
         cat_fenders: "مصدات",
@@ -925,6 +953,10 @@ export const translations: Record<Language, Record<string, string>> = {
         contact_change: "Изменить",
         contact_city_label: "Город",
         contact_district_label: "Район",
-        contact_select: "Выбрать"
+        contact_select: "Выбрать",
+        hero_subtitle: "AFS Yacht | Крюк для кранцев",
+        cat_lines: "Тросы",
+        feature_label: "Особенность",
+        view_details_btn: "Посмотреть детали"
     }
 };

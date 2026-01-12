@@ -9,7 +9,7 @@ import { ArrowRight } from "./icons";
 
 export const Hero = () => {
     const { darkMode } = useTheme();
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
     useEffect(() => {
@@ -25,7 +25,7 @@ export const Hero = () => {
     }, []);
 
     return (
-        <section className={`relative h-screen flex flex-col md:flex-row items-center justify-center overflow-hidden transition-colors duration-500 ${darkMode ? 'bg-brand-navy' : 'bg-slate-50'}`}>
+        <section key={language} className={`relative h-screen flex flex-col md:flex-row items-center justify-center overflow-hidden transition-colors duration-500 ${darkMode ? 'bg-brand-navy' : 'bg-slate-50'}`}>
             {/* Background elements */}
             <div className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ${darkMode ? 'opacity-20' : 'opacity-5'}`}>
                 <div className="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-brand-gold blur-[100px]"></div>
@@ -36,7 +36,7 @@ export const Hero = () => {
                 {/* Text Content */}
                 <div className="text-center md:text-left order-2 md:order-1">
                     <div className="mb-6 animate-fade-in-up">
-                        <h1 className="text-brand-gold tracking-[0.3em] uppercase text-sm font-bold">AFS Yacht | Usturmaça Askısı</h1>
+                        <h1 className="text-brand-gold tracking-[0.3em] uppercase text-sm font-bold">{t('hero_subtitle')}</h1>
                     </div>
                     <h2 className={`text-4xl md:text-6xl lg:text-7xl font-serif font-medium italic mb-8 tracking-wide leading-tight animate-fade-in-up delay-100 ${darkMode ? 'text-white' : 'text-brand-navy'}`}>
                         {t('hero_title')}
