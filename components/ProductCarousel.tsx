@@ -172,7 +172,7 @@ export const ProductCarousel = () => {
                                 return (
                                     <button
                                         key={idx}
-                                        ref={(el) => { itemsRef.current[idx] = el }}
+                                        ref={(el) => { itemsRef.current[idx] = el; }}
                                         onClick={() => jumpToCategory(idx % len)}
                                         className={`
                                             whitespace-nowrap font-serif transition-colors duration-500
