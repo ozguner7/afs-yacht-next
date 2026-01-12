@@ -31,9 +31,8 @@ export const Navbar = () => {
     const hoverColor = 'hover:text-brand-gold';
 
     return (
-        <nav className={`fixed w-full z-50 transition-all duration-500 ease-in-out border-b backdrop-blur-md ${navBg} py-4`}>
-            {/* Animated Shadow/Border */}
-            <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-gold/50 to-transparent bg-[length:200%_100%] animate-shadow-move"></div>
+        <nav className={`fixed w-full z-50 transition-all duration-500 ease-in-out border-b  ${navBg} py-4`}>
+
             <div className="container mx-auto px-6 flex justify-between items-center">
                 <div className="flex items-center gap-2">
                     <Link href="/" className="relative">
