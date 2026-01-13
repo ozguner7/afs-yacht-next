@@ -1,22 +1,5 @@
 import { NextResponse } from 'next/server';
-
-const products = [
-    {
-        id: "thetis",
-        name: "AFS THETIS",
-        img: "https://afsyacht.com/wp-content/uploads/2024/06/Usturmaca-Askisi-AFS-Yacht-1-2-1536x1394.png"
-    },
-    {
-        id: "pontos",
-        name: "AFS PONTOS",
-        img: "https://afsyacht.com/wp-content/uploads/2024/06/Usturmaca-Askisi-AFS-Yacht-2-1935x2048.png"
-    },
-    {
-        id: "argos",
-        name: "AFS ARGOS",
-        img: "https://afsyacht.com/wp-content/uploads/2024/06/Usturmaca-Askisi-AFS-Yacht-3-1536x1251.png"
-    }
-];
+import { productsData } from '@/data/products';
 
 export async function POST(request: Request) {
     try {
@@ -28,12 +11,34 @@ export async function POST(request: Request) {
 
         if (!apiKey) return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
 
-        const safeSelectedProducts = Array.isArray(selectedProducts) ? selectedProducts : [];
-        const selectedProductDetails = safeSelectedProducts.map(id =>
-            products.find(p => p.id === id) || { id, name: id, img: "" }
-        );
+        const safeSelectedProducts: (string | { id: string; name: string; details?: string })[] = Array.isArray(selectedProducts) ? selectedProducts : [];
 
-        const allProductNames = selectedProductDetails.map(p => p.name).join(', ');
+        const selectedProductDetails = safeSelectedProducts.map((item) => {
+            // Support both legacy string IDs and new object payload
+            const productId = typeof item === 'string' ? item : item.id;
+            const productData = productsData.find(p => p.id === productId);
+
+            // Construct absolute image URL - assuming images are in public folder
+            // If productData.image is a full URL, use it, otherwise prepend domain
+            let imageUrl = "";
+            if (productData?.image) {
+                imageUrl = productData.image.startsWith('http')
+                    ? productData.image
+                    : `https://afsyacht.com${productData.image}`;
+            }
+
+            return {
+                name: productData?.name || (typeof item === 'object' ? item.name : productId),
+                img: imageUrl,
+                details: (typeof item === 'object' && item.details) ? item.details : ""
+            };
+        });
+
+        // Format product names including details for the text list
+        const allProductNames = selectedProductDetails.map(p => {
+            return p.details ? `${p.name} (${p.details})` : p.name;
+        }).join(', ');
+
         const productSuffix = selectedProductDetails.length > 1 ? "ürünlerimize" : "ürünümüze";
 
         // 1. CRM Kaydı
@@ -47,7 +52,7 @@ export async function POST(request: Request) {
                     LASTNAME: formData.lastName,
                     SMS: formData.phone,
                     CITY: formData.city,
-                    DISTRICT: formData.district,
+                    DISTRICT: formData.district || "", // Ensure string
                     YACHT_NAME: formData.yachtName,
                     PRODUCT_INTEREST: allProductNames,
                     NOTE: formData.note
@@ -67,13 +72,14 @@ export async function POST(request: Request) {
                     FIRSTNAME: formData.firstName,
                     PRODUCT_NAME: allProductNames || "Ürünlerimiz",
                     PRODUCT_SUFFIX: productSuffix,
-                    PRODUCTS_LIST: selectedProductDetails // Brevo'ya ham liste gidiyor
+                    PRODUCTS_LIST: selectedProductDetails // Brevo'ya ham liste gidiyor {name, img, details}
                 }
             })
         });
 
         return NextResponse.json({ success: true });
-    } catch {
+    } catch (error) {
+        console.error("API Error:", error);
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
 }
