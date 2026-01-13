@@ -4,11 +4,9 @@ import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTheme } from "./ThemeContext";
 import { useLanguage } from "./LanguageContext";
-import { ArrowRight, Star, Check, ChevronRight, X } from "./icons";
+import { ArrowRight, Check, X } from "./icons";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import { productsData } from "@/data/products"; // Import real data
 // Custom styles handled via styled-jsx below
 
@@ -16,148 +14,7 @@ const products = productsData; // Use imported data
 
 
 
-const coastalLocationData = [
-    {
-        "id": 1,
-        "name": "Adana",
-        "districts": ["Karataş", "Yumurtalık"]
-    },
-    {
-        "id": 7,
-        "name": "Antalya",
-        "districts": ["Aksu", "Alanya", "Demre", "Döşemealtı", "Finike", "Gazipaşa", "Kaş", "Kemer", "Konyaaltı", "Kumluca", "Manavgat", "Muratpaşa", "Serik"]
-    },
-    {
-        "id": 8,
-        "name": "Artvin",
-        "districts": ["Arhavi", "Hopa", "Kemalpaşa"]
-    },
-    {
-        "id": 9,
-        "name": "Aydın",
-        "districts": ["Didim", "Kuşadası", "Söke"]
-    },
-    {
-        "id": 10,
-        "name": "Balıkesir",
-        "districts": ["Ayvalık", "Bandırma", "Burhaniye", "Edremit", "Erdek", "Gömeç", "Marmara", "Gönen"]
-    },
-    {
-        "id": 74,
-        "name": "Bartın",
-        "districts": ["Amasra", "Kurucaşile", "Merkez"]
-    },
-    {
-        "id": 16,
-        "name": "Bursa",
-        "districts": ["Gemlik", "Karacabey", "Mudanya"]
-    },
-    {
-        "id": 17,
-        "name": "Çanakkale",
-        "districts": ["Ayvacık", "Biga", "Bozcaada", "Eceabat", "Ezine", "Gelibolu", "Gökçeada", "Lapseki", "Merkez"]
-    },
-    {
-        "id": 81,
-        "name": "Düzce",
-        "districts": ["Akçakoca"]
-    },
-    {
-        "id": 22,
-        "name": "Edirne",
-        "districts": ["Enez", "Keşan"]
-    },
-    {
-        "id": 28,
-        "name": "Giresun",
-        "districts": ["Bulancak", "Eynesil", "Görele", "Keşap", "Merkez", "Piraziz", "Tirebolu"]
-    },
-    {
-        "id": 31,
-        "name": "Hatay",
-        "districts": ["Arsuz", "Dörtyol", "Erzin", "İskenderun", "Payas", "Samandağ", "Yayladağı"]
-    },
-    {
-        "id": 34,
-        "name": "İstanbul",
-        "districts": ["Adalar", "Arnavutköy", "Avcılar", "Bakırköy", "Beşiktaş", "Beykoz", "Beylikdüzü", "Beyoğlu", "Büyükçekmece", "Çatalca", "Fatih", "Kadıköy", "Kartal", "Küçükçekmece", "Maltepe", "Pendik", "Sarıyer", "Silivri", "Şile", "Tuzla", "Üsküdar", "Zeytinburnu"]
-    },
-    {
-        "id": 35,
-        "name": "İzmir",
-        "districts": ["Aliağa", "Balçova", "Çeşme", "Dikili", "Foça", "Gaziemir", "Güzelbahçe", "Karaburun", "Karşıyaka", "Konak", "Menderes", "Menemen", "Narlıdere", "Seferihisar", "Selçuk", "Urla"]
-    },
-    {
-        "id": 37,
-        "name": "Kastamonu",
-        "districts": ["Abana", "Cide", "Çatalzeytin", "Doğanyurt", "İnebolu", "Bozkurt"]
-    },
-    {
-        "id": 39,
-        "name": "Kırklareli",
-        "districts": ["Demirköy", "Vize"]
-    },
-    {
-        "id": 41,
-        "name": "Kocaeli",
-        "districts": ["Başiskele", "Darıca", "Derince", "Dilovası", "Gebze", "Gölcük", "İzmit", "Kandıra", "Karamürsel", "Körfez"]
-    },
-    {
-        "id": 33,
-        "name": "Mersin",
-        "districts": ["Akdeniz", "Anamur", "Aydıncık", "Bozyazı", "Erdemli", "Gülnar", "Mezitli", "Silifke", "Tarsus", "Toroslar", "Yenişehir"]
-    },
-    {
-        "id": 48,
-        "name": "Muğla",
-        "districts": ["Bodrum", "Dalaman", "Datça", "Fethiye", "Köyceğiz", "Marmaris", "Milas", "Ortaca", "Seydikemer", "Ula"]
-    },
-    {
-        "id": 52,
-        "name": "Ordu",
-        "districts": ["Altınordu", "Fatsa", "Gülyalı", "Perşembe", "Ünye"]
-    },
-    {
-        "id": 53,
-        "name": "Rize",
-        "districts": ["Ardeşen", "Çayeli", "Fındıklı", "İyidere", "Merkez", "Pazar"]
-    },
-    {
-        "id": 54,
-        "name": "Sakarya",
-        "districts": ["Karasu", "Kaynarca", "Kocaali"]
-    },
-    {
-        "id": 55,
-        "name": "Samsun",
-        "districts": ["Alaçam", "Atakum", "Bafra", "Canik", "Çarşamba", "İlkadım", "Ondokuzmayıs", "Tekkeköy", "Terme", "Yakakent"]
-    },
-    {
-        "id": 57,
-        "name": "Sinop",
-        "districts": ["Ayancık", "Dikmen", "Gerze", "Merkez", "Türkeli"]
-    },
-    {
-        "id": 59,
-        "name": "Tekirdağ",
-        "districts": ["Marmaraereğlisi", "Süleymanpaşa", "Şarköy"]
-    },
-    {
-        "id": 61,
-        "name": "Trabzon",
-        "districts": ["Akçaabat", "Araklı", "Arsin", "Beşikdüzü", "Çarşıbaşı", "Of", "Ortahisar", "Sürmene", "Vakfıkebir", "Yomra"]
-    },
-    {
-        "id": 77,
-        "name": "Yalova",
-        "districts": ["Altınova", "Armutlu", "Çınarcık", "Çiftlikköy", "Merkez", "Termal"]
-    },
-    {
-        "id": 67,
-        "name": "Zonguldak",
-        "districts": ["Alaplı", "Çaycuma", "Ereğli", "Kilimli", "Kozlu", "Merkez"]
-    }
-];
+
 
 const PRIVACY_CONTENT = `
 Gizlilik Politikası
@@ -244,30 +101,20 @@ const FormContent = () => {
     const [step, setStep] = useState(1);
     const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
     const [selectedProductDetails, setSelectedProductDetails] = useState<Record<string, Record<string, string>>>({}); // { productId: { optionLabel: value } }
-    const [measurementMethod, setMeasurementMethod] = useState(""); // 'appointment' or 'manual'
 
-    // ... form state same as before, but with added options handling
     const [formData, setFormData] = useState({
-        measurements: "", // Kept for legacy/generic
         firstName: "",
         lastName: "",
         email: "",
         phone: "",
-        yachtName: "",
-        city: "",
-        district: "",
-        addressDetails: "",
-        appointmentDate: null as Date | null,
-        bulwarkThickness: "",
-        bulwarkWidth: "",
-        yachtHeight: "",
+        yachtName: "", // Optional: Yacht/Company Name
+        city: "", // Optional
         note: "",
         kvkkParams: false,
         marketingConsent: false
     });
     const [phoneError, setPhoneError] = useState("");
     const [emailError, setEmailError] = useState("");
-    const [disabledDates, setDisabledDates] = useState<Date[]>([]);
     const [activeModal, setActiveModal] = useState<'privacy' | 'kvkk' | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -295,23 +142,10 @@ const FormContent = () => {
                 }
             }
         }
-
-        // Generate random disabled dates for the next 60 days
-        const dates: Date[] = [];
-        const today = new Date();
-        for (let i = 0; i < 5; i++) {
-            const randomDays = Math.floor(Math.random() * 30) + 1; // Random day within next month
-            const date = new Date(today);
-            date.setDate(today.getDate() + randomDays);
-            dates.push(date);
-        }
-        setDisabledDates(dates);
-
     }, [searchParams]);
 
     const handleNext = () => {
         if (step === 1 && selectedProducts.length === 0) return;
-        if (step === 2 && !isStep2Valid) return;
         setStep(prev => prev + 1);
     };
 
@@ -371,8 +205,7 @@ const FormContent = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     formData,
-                    selectedProducts: extendedSelectedProducts, // Send rich object
-                    measurementMethod
+                    selectedProducts: extendedSelectedProducts
                 })
             });
 
@@ -380,7 +213,7 @@ const FormContent = () => {
                 throw new Error('Form submission failed');
             }
 
-            setStep(4);
+            setStep(3);
         } catch (error) {
             console.error(error);
             alert(t('error_submission') || "Bir hata oluştu. Lütfen tekrar deneyiniz.");
@@ -390,23 +223,12 @@ const FormContent = () => {
     };
 
     const isStep1Valid = selectedProducts.length > 0;
-    const isStep2Valid = measurementMethod === 'appointment'
-        ? true
-        : (measurementMethod === 'manual' && formData.bulwarkThickness && formData.bulwarkWidth && formData.yachtHeight);
-
-    const isStep3Valid = formData.firstName && formData.lastName && formData.email && !emailError && formData.phone && !phoneError && formData.kvkkParams && formData.city && formData.district;
+    const isStep2Valid = formData.firstName && formData.lastName && formData.email && !emailError && formData.phone && !phoneError && formData.kvkkParams;
 
     const inputBg = darkMode ? 'bg-brand-navy border-slate-700 text-white' : 'bg-slate-50 border-slate-200 text-slate-900';
     const labelClass = darkMode ? 'text-slate-300' : 'text-slate-700';
 
     const selectedProductsList = products.filter(p => selectedProducts.includes(p.id));
-    const selectedCityObj = coastalLocationData.find(c => c.name === formData.city);
-
-    // DatePicker filter for weekends
-    const isWeekday = (date: Date) => {
-        const day = date.getDay();
-        return day !== 0 && day !== 6;
-    };
 
     const productGroups = {
         [t('footer_col_hooks')]: products.filter(p => p.category === 'hook'),
@@ -496,31 +318,31 @@ const FormContent = () => {
                 <div className={`absolute top-1/2 left-0 h-1 bg-brand-gold -z-10 -translate-y-1/2 transition-all duration-500 rounded-full`} style={{ width: `${((step - 1) / 2) * 100}%` }}></div>
 
                 {[1, 2, 3].map((s) => {
-                    // Simplified Reachability: 
-                    // Step 1: Always reachable
-                    // Step 2: Reachable if Step 1 is valid
-                    // Step 3: Reachable if Step 1 AND Step 2 are valid
-
                     const canJumpTo = (target: number) => {
                         if (target === 1) return true;
                         if (target === 2) return isStep1Valid;
-                        if (target === 3) return isStep1Valid && isStep2Valid;
+                        if (target === 3) return isStep1Valid && isStep2Valid; // Step 2 is now contact
                         return false;
                     };
 
                     const clickable = canJumpTo(s);
+                    const label = s === 1 ? t('contact_step1') : s === 2 ? t('contact_step3') : t('contact_success_title');
+
+                    // If we only have 2 steps + success, maybe we should just show 2 steps or 3? 
+                    // Let's treat it as: 1. Products, 2. Contact, 3. Success (or just 2 steps in bar?)
+                    // The UI had 3 circles. Let's keep 3 for visual balance: 1. Products, 2. Contact, 3. Finish
 
                     return (
                         <div
                             key={s}
-                            onClick={() => clickable && setStep(s)}
-                            className={`flex flex-col items-center gap-2 bg-transparent transition-all ${clickable ? 'cursor-pointer hover:opacity-80' : 'cursor-not-allowed opacity-100'}`}
+                            onClick={() => clickable && s < 3 && setStep(s)} // Don't click to success
+                            className={`flex flex-col items-center gap-2 bg-transparent transition-all ${clickable && s < 3 ? 'cursor-pointer hover:opacity-80' : 'cursor-not-allowed opacity-100'}`}
                         >
                             <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all ${step >= s ? 'bg-brand-gold text-white scale-110' : (darkMode ? 'bg-slate-800 text-slate-500' : 'bg-white text-slate-400 border border-slate-200')}`}>
                                 {step > s ? '✓' : s}
                             </div>
                             <span className={`text-xs font-bold uppercase tracking-wider ${step >= s ? 'text-brand-gold' : 'text-slate-400'}`}>
-                                {s === 1 ? t('contact_step1') : s === 2 ? t('contact_step2') : t('contact_step3')}
+                                {label}
                             </span>
                         </div>
                     );
@@ -544,7 +366,7 @@ const FormContent = () => {
                             return p.name + detailStr;
                         }).join(", ")}</h4>
                     </div>
-                    {step > 1 && (
+                    {step > 1 && step < 3 && (
                         <button onClick={() => setStep(1)} className="ml-auto text-xs underline opacity-50 hover:opacity-100">{t('contact_change')}</button>
                     )}
                 </div>
@@ -610,92 +432,8 @@ const FormContent = () => {
                         </div>
                     )}
 
-                    {/* Step 2: Measurements */}
+                    {/* Step 2: Contact Details (Formerly Step 3) */}
                     {step === 2 && (
-                        <div className="animate-fade-in-up">
-                            <h3 className={`text-2xl font-serif mb-8 text-center ${darkMode ? 'text-white' : 'text-slate-900'}`}>{t('contact_step2')}</h3>
-
-                            <div className="flex flex-col md:flex-row gap-6 mb-8">
-                                <label className={`flex-1 p-6 border-2 rounded-sm cursor-pointer transition-all relative ${measurementMethod === 'appointment' ? 'border-brand-gold bg-brand-gold/10' : (darkMode ? 'border-slate-700 hover:border-slate-600' : 'border-slate-200 hover:border-slate-300')}`}>
-                                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-gold text-white text-[10px] tracking-wider px-3 py-1 rounded-full uppercase font-bold shadow-lg">
-                                        {t('contact_recommended')}
-                                    </div>
-                                    <input type="radio" name="method" value="appointment" className="hidden" checked={measurementMethod === 'appointment'} onChange={() => setMeasurementMethod('appointment')} />
-                                    <div className="text-center">
-                                        <div className="text-brand-gold mb-3 flex justify-center"><Star size={32} /></div>
-                                        <h4 className={`font-bold text-lg mb-2 ${darkMode ? 'text-white' : 'text-slate-900'}`}>{t('contact_appointment')}</h4>
-                                        <p className={`text-sm opacity-80 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('contact_appointment_desc')}</p>
-                                    </div>
-                                </label>
-
-                                <label className={`flex-1 p-6 border-2 rounded-sm cursor-pointer transition-all ${measurementMethod === 'manual' ? 'border-brand-gold bg-brand-gold/10' : (darkMode ? 'border-slate-700 hover:border-slate-600' : 'border-slate-200 hover:border-slate-300')}`}>
-                                    <input type="radio" name="method" value="manual" className="hidden" checked={measurementMethod === 'manual'} onChange={() => setMeasurementMethod('manual')} />
-                                    <div className="text-center">
-                                        <div className="text-brand-gold mb-3 flex justify-center"><ChevronRight size={32} /></div>
-                                        <h4 className={`font-bold text-lg mb-2 ${darkMode ? 'text-white' : 'text-slate-900'}`}>{t('contact_manual')}</h4>
-                                        <p className={`text-sm opacity-80 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('contact_manual_desc')}</p>
-                                    </div>
-                                </label>
-                            </div>
-
-                            {measurementMethod === 'manual' && (
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in-up">
-                                    <div>
-                                        <label className={`block text-xs uppercase tracking-wider font-bold mb-2 ${labelClass}`}>{t('measure_thickness')}</label>
-                                        <div className="relative">
-                                            <input
-                                                type="text"
-                                                inputMode="numeric"
-                                                className={`w-full px-4 py-3 rounded-sm border focus:border-brand-gold outline-none transition-all ${inputBg} pr-12`}
-                                                value={formData.bulwarkThickness}
-                                                onChange={(e) => {
-                                                    const val = e.target.value.replace(/[^0-9]/g, '');
-                                                    setFormData({ ...formData, bulwarkThickness: val });
-                                                }}
-                                            />
-                                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold opacity-50">mm</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label className={`block text-xs uppercase tracking-wider font-bold mb-2 ${labelClass}`}>{t('measure_width')}</label>
-                                        <div className="relative">
-                                            <input
-                                                type="text"
-                                                inputMode="numeric"
-                                                className={`w-full px-4 py-3 rounded-sm border focus:border-brand-gold outline-none transition-all ${inputBg} pr-12`}
-                                                value={formData.bulwarkWidth}
-                                                onChange={(e) => {
-                                                    const val = e.target.value.replace(/[^0-9]/g, '');
-                                                    setFormData({ ...formData, bulwarkWidth: val });
-                                                }}
-                                            />
-                                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold opacity-50">mm</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label className={`block text-xs uppercase tracking-wider font-bold mb-2 ${labelClass}`}>{t('measure_height')}</label>
-                                        <div className="relative">
-                                            <input
-                                                type="text"
-                                                inputMode="numeric"
-                                                className={`w-full px-4 py-3 rounded-sm border focus:border-brand-gold outline-none transition-all ${inputBg} pr-12`}
-                                                value={formData.yachtHeight}
-                                                onChange={(e) => {
-                                                    const val = e.target.value.replace(/[^0-9]/g, '');
-                                                    setFormData({ ...formData, yachtHeight: val });
-                                                }}
-                                            />
-                                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold opacity-50">cm</span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            )}
-                        </div>
-                    )}
-
-                    {/* Step 3: Details */}
-                    {step === 3 && (
                         <div className="animate-fade-in-up">
                             <h3 className={`text-2xl font-serif mb-8 text-center ${darkMode ? 'text-white' : 'text-slate-900'}`}>{t('contact_step3')}</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -740,43 +478,16 @@ const FormContent = () => {
                                     {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
                                 </div>
 
-                                {/* Optional Yacht Name */}
-                                <div>
-                                    <label className={`block text-xs uppercase tracking-wider font-bold mb-2 ${labelClass}`}>{t('contact_yacht_optional')}</label>
+                                {/* Yacht / Firm Name (Optional) */}
+                                <div className="md:col-span-2">
+                                    <label className={`block text-xs uppercase tracking-wider font-bold mb-2 ${labelClass}`}>{t('contact_yacht_company_optional') || "Yat / Firma Adı (Opsiyonel)"}</label>
                                     <input type="text" className={`w-full px-4 py-3 rounded-sm border focus:border-brand-gold outline-none transition-all ${inputBg}`} value={formData.yachtName} onChange={(e) => setFormData({ ...formData, yachtName: e.target.value })} />
                                 </div>
 
-                                {/* Coastal Location Selector - For BOTH Appointment and Manual */}
-                                <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in-up">
-                                    <div>
-                                        <label className={`block text-xs uppercase tracking-wider font-bold mb-2 ${labelClass}`}>{t('contact_city_label')}</label>
-                                        <select
-                                            className={`w-full px-4 py-3 rounded-sm border focus:border-brand-gold outline-none transition-all appearance-none cursor-pointer ${inputBg}`}
-                                            value={formData.city}
-                                            onChange={(e) => setFormData({ ...formData, city: e.target.value, district: "" })}
-                                            required
-                                        >
-                                            <option value="">{t('contact_select')}</option>
-                                            {coastalLocationData.map(city => (
-                                                <option key={city.id} value={city.name}>{city.name}</option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label className={`block text-xs uppercase tracking-wider font-bold mb-2 ${labelClass}`}>{t('contact_district_label')}</label>
-                                        <select
-                                            className={`w-full px-4 py-3 rounded-sm border focus:border-brand-gold outline-none transition-all appearance-none cursor-pointer ${inputBg}`}
-                                            value={formData.district}
-                                            onChange={(e) => setFormData({ ...formData, district: e.target.value })}
-                                            required
-                                            disabled={!formData.city}
-                                        >
-                                            <option value="">{t('contact_select')}</option>
-                                            {selectedCityObj && selectedCityObj.districts.map((dist) => (
-                                                <option key={dist} value={dist}>{dist}</option>
-                                            ))}
-                                        </select>
-                                    </div>
+                                {/* Yacht / Firm City (Optional) */}
+                                <div className="md:col-span-2">
+                                    <label className={`block text-xs uppercase tracking-wider font-bold mb-2 ${labelClass}`}>{t('contact_city_company_optional') || "Yat / Firma'nın Bulunduğu Şehir (Opsiyonel)"}</label>
+                                    <input type="text" className={`w-full px-4 py-3 rounded-sm border focus:border-brand-gold outline-none transition-all ${inputBg}`} value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })} />
                                 </div>
 
                                 {/* Optional Note */}
@@ -785,31 +496,8 @@ const FormContent = () => {
                                     <textarea rows={2} className={`w-full px-4 py-3 rounded-sm border focus:border-brand-gold outline-none transition-all ${inputBg}`} value={formData.note} onChange={(e) => setFormData({ ...formData, note: e.target.value })}></textarea>
                                 </div>
 
-                                {/* Conditional Date Picker - Only for Appointment, after City/District filled */}
-                                {measurementMethod === 'appointment' && (
-                                    <div className={`md:col-span-2 transition-all duration-500 overflow-hidden ${formData.city && formData.district ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-50'}`}>
-                                        <div className={`p-6 rounded-sm border border-brand-gold/30 bg-brand-gold/5 flex flex-col md:flex-row items-center gap-6`}>
-                                            <div className="text-brand-gold hidden md:block"><Star size={24} /></div>
-                                            <div className="flex-1 w-full">
-                                                <label className={`block text-xs uppercase tracking-wider font-bold mb-4 ${labelClass}`}>{t('contact_date_label')}</label>
-                                                <DatePicker
-                                                    selected={formData.appointmentDate}
-                                                    onChange={(date: Date | null) => setFormData({ ...formData, appointmentDate: date })}
-                                                    minDate={new Date()}
-                                                    filterDate={isWeekday}
-                                                    excludeDates={disabledDates}
-                                                    inline
-                                                    calendarStartDay={1}
-                                                    wrapperClassName="w-full flex justify-center"
-                                                    calendarClassName="!shadow-none !border-0"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
-
                                 {/* Legal Checkboxes */}
-                                <div className="flex flex-col gap-4 mb-8">
+                                <div className="flex flex-col gap-4 mb-8 md:col-span-2">
                                     <label className="flex items-center gap-3 cursor-pointer group">
                                         <div className={`w-5 h-5 shrink-0 rounded-sm border flex items-center justify-center transition-all ${formData.kvkkParams ? 'bg-brand-gold border-brand-gold' : (darkMode ? 'border-slate-600' : 'border-slate-300')}`}>
                                             {formData.kvkkParams && <Check size={12} className="text-white" />}
@@ -832,8 +520,8 @@ const FormContent = () => {
                         </div>
                     )}
 
-                    {/* Buttons - Only show if Step < 4 */}
-                    {step < 4 && (
+                    {/* Buttons - Only show if Step < 3 */}
+                    {step < 3 && (
                         <div className="flex justify-between mt-12 pt-6 border-t border-slate-200/20">
                             {step > 1 ? (
                                 <button type="button" onClick={handleBack} className={`text-sm font-bold uppercase tracking-widest hover:text-brand-gold transition-colors ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
@@ -841,26 +529,20 @@ const FormContent = () => {
                                 </button>
                             ) : <div></div>}
 
-                            {/* Standard Next Button - Hide in Step 1 if sidebar is present to rely on sidebar button? 
-                                Actually let's keep it but maybe visually distinct or hidden if selections imply sidebar usage.
-                                User asked for "Sonraki Adım" in SideBar. 
-                                I will HIDE this bottom button in Step 1 if there are selected items, forcing use of sidebar?
-                                No, simply keep it.
-                            */}
-                            {step < 3 ? (
+                            {step < 2 ? (
                                 <button type="button" onClick={handleNext} disabled={step === 1 ? !isStep1Valid : !isStep2Valid} className={`px-8 py-3 bg-brand-gold text-white text-sm font-bold uppercase tracking-widest rounded-sm transition-all ${step === 1 ? (!isStep1Valid ? 'opacity-50 cursor-not-allowed' : 'hover:bg-brand-gold/80') : (!isStep2Valid ? 'opacity-50 cursor-not-allowed' : 'hover:bg-brand-gold/80')}`}>
                                     {t('btn_next')}
                                 </button>
                             ) : (
-                                <button type="submit" disabled={!isStep3Valid || isSubmitting} className={`px-10 py-3 bg-brand-gold text-white text-sm font-bold uppercase tracking-widest rounded-sm transition-all animate-pulse ${(!isStep3Valid || isSubmitting) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-brand-gold/80'}`}>
+                                <button type="submit" disabled={!isStep2Valid || isSubmitting} className={`px-10 py-3 bg-brand-gold text-white text-sm font-bold uppercase tracking-widest rounded-sm transition-all animate-pulse ${(!isStep2Valid || isSubmitting) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-brand-gold/80'}`}>
                                     {isSubmitting ? '...' : t('btn_submit')}
                                 </button>
                             )}
                         </div>
                     )}
 
-                    {/* Step 4: Success View */}
-                    {step === 4 && (
+                    {/* Step 3: Success View (Formerly Step 4) */}
+                    {step === 3 && (
                         <div className="text-center animate-fade-in-up py-12">
                             <div className="w-24 h-24 bg-brand-gold text-white rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg shadow-brand-gold/30">
                                 <Check size={48} />

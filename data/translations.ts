@@ -123,6 +123,8 @@ export const translations: Record<Language, Record<string, string>> = {
         hero_subtitle: "AFS Yacht | Usturmaça Askısı",
         cat_lines: "Halatlar",
         feature_label: "Özellik",
+        contact_yacht_company_optional: "Yat / Firma Adı (Opsiyonel)",
+        contact_city_company_optional: "Yat / Firma'nın Bulunduğu Şehir (Opsiyonel)",
         view_details_btn: "İnceleyin"
     },
     EN: {
@@ -244,6 +246,8 @@ export const translations: Record<Language, Record<string, string>> = {
         hero_subtitle: "AFS Yacht | Fender Hook",
         cat_lines: "Lines",
         feature_label: "Feature",
+        contact_yacht_company_optional: "Yacht / Company Name (Optional)",
+        contact_city_company_optional: "Yacht / Company City (Optional)",
         view_details_btn: "View Details"
     },
     ES: {
