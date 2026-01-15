@@ -19,9 +19,11 @@ export async function POST(request: Request) {
             const productData = productsData.find(p => p.id === productId);
 
             // Construct absolute image URL - assuming images are in public folder
-            // If productData.image is a full URL, use it, otherwise prepend domain
+            // If productData.emailImage exists, use it as priority
             let imageUrl = "";
-            if (productData?.image) {
+            if (productData?.emailImage) {
+                imageUrl = productData.emailImage;
+            } else if (productData?.image) {
                 imageUrl = productData.image.startsWith('http')
                     ? productData.image
                     : `https://afsyacht.com${productData.image}`;

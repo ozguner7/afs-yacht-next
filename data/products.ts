@@ -11,6 +11,7 @@ export interface Product {
     }[];
     image: string;
     detailImage?: string;
+    emailImage?: string;
     options?: {
         label: string;
         items: string[];
@@ -24,6 +25,7 @@ export const productsData: Product[] = [
         slug: "afs-thetis",
         category: "hook",
         image: "/afs-thetis.png",
+        emailImage: "https://afsyacht.com/wp-content/uploads/2024/06/Usturmaca-Askisi-AFS-Yacht-1-2-1536x1394.png",
         description: "Harken 280 Cam cleat ve özel tasarım paslanmaz ip yuvası ile donatılmış, Ø6-16 mm halat çapına uygun, estetik ve dayanıklı usturmaça askısı.",
         specs: [
             "Harken 280 Cam cleat (Kıstırmaç) kullanılır",
@@ -61,6 +63,7 @@ export const productsData: Product[] = [
         slug: "afs-pontos",
         category: "hook",
         image: "/afs-pontos.png",
+        emailImage: "https://afsyacht.com/wp-content/uploads/2024/06/Usturmaca-Askisi-AFS-Yacht-2-1935x2048.png",
         description: "Harken 491 Cam cleat ile güçlü tutuş sağlayan, Ø6-16 mm halat çapına uygun, premium deri kaplamalı usturmaça askısı.",
         specs: [
             "Harken 491 Cam cleat (Kıstırmaç) kullanılır",
@@ -98,6 +101,7 @@ export const productsData: Product[] = [
         slug: "afs-argos",
         category: "hook",
         image: "/afs-argos.png",
+        emailImage: "https://afsyacht.com/wp-content/uploads/2024/06/Usturmaca-Askisi-AFS-Yacht-3-1536x1251.png",
         description: "Harken 150 Cam cleat ve Harken 237 ip yuvası ile kompakt ve şık tasarım. Ø3-13 mm halat çapları için idealdir.",
         specs: [
             "Harken 150 Cam cleat (Kıstırmaç) kullanılır",
@@ -129,38 +133,14 @@ export const productsData: Product[] = [
             }
         ]
     },
-    {
-        id: "pilot-ladder",
-        name: "AFS Pilot Merdiveni",
-        slug: "afs-pilot-merdiveni",
-        category: "ladder",
-        image: "/pilot-merdiveni.webp",
-        detailImage: "/pilot-merdiveni-yat.webp",
-        description: "Yüksek güvenlik standartlarında üretilen, dayanıklı ve ergonomik pilot merdiveni.",
-        specs: [
-            "Uluslararası standartlara uygun tasarım",
-            "Kaymaz basamak yüzeyi",
-            "Yüksek mukavemetli halat yapısı",
-            "Uzun ömürlü ve dayanıklı malzeme",
-            "Kolay depolama ve kullanım",
-            "Farklı boy seçenekleri mevcuttur"
-        ],
-        fullDescription: [
-            {
-                title: "Güvenlik ve Kalite",
-                content: [
-                    "Pilot merdivenlerimiz denizcilikteki en zorlu koşullara dayanacak şekilde tasarlanmıştır. Her bir basamak ve bağlantı noktası, maksimum güvenlik sağlamak üzere test edilmiştir.",
-                    "Mürettebatın ve pilotların güvenli geçişini sağlamak önceliğimizdir."
-                ]
-            }
-        ]
-    },
+
     {
         id: "fender-type1",
         name: "AFS Usturmaça Tip 1",
         slug: "afs-usturmaca-tip-1",
         category: "fender",
         image: "/usturmaca-tip-1.webp",
+        emailImage: "https://afs-yacht-next.onrender.com/_next/image?url=%2Fusturmaca-tip-1.webp&w=3840&q=75",
         description: "Teknenizi darbelerden koruyan, üstün kaliteli malzemeden üretilmiş dayanıklı usturmaça.",
         options: [
             {
@@ -193,6 +173,7 @@ export const productsData: Product[] = [
         category: "cover",
         image: "/afs-yacht-usturmaca-kilif.png",
         detailImage: "/afs-yacht-usturmaca-kilifi.png",
+        emailImage: "https://afs-yacht-next.onrender.com/_next/image?url=%2Fafs-yacht-usturmaca-kilifi.png&w=3840&q=75",
         description: "Usturmaçalarınızı UV ışınlarından ve aşınmadan koruyan, estetik ve dayanıklı kılıf.",
         specs: [
             "Yüksek kaliteli, UV dirençli kumaş",
@@ -218,6 +199,7 @@ export const productsData: Product[] = [
         slug: "afs-koc-boynuzu",
         category: "cleat",
         image: "/afs-yacht-koc-boynuzu.webp",
+        emailImage: "https://afs-yacht-next.onrender.com/_next/image?url=%2Fafs-yacht-koc-boynuzu.webp&w=3840&q=75",
         description: "Paslanmaz çelikten üretilen, yüksek mukavemetli ve estetik koç boynuzu.",
         specs: [
             "316L kalite paslanmaz çelik",
@@ -243,6 +225,7 @@ export const productsData: Product[] = [
         slug: "afs-bot-baglama-askisi",
         category: "dinghy-hanger",
         image: "/bot-baglama-askisi.webp",
+        emailImage: "https://afs-yacht-next.onrender.com/_next/image?url=%2Fbot-baglama-askisi.webp&w=640&q=75",
         description: "Botunuzu güvenle bağlamanız için tasarlanmış, pratik ve dayanıklı askı çözümü.",
         specs: [
             "Güçlendirilmiş yapı",
@@ -267,6 +250,7 @@ export const productsData: Product[] = [
         slug: "afs-usturmaca-baglama-halati-tip-1",
         category: "line",
         image: "/usturmaca-baglama-halati-tip-1.webp",
+        emailImage: "https://afs-yacht-next.onrender.com/_next/image?url=%2Fusturmaca-baglama-halati-tip-1.webp&w=3840&q=75",
         description: "Usturmaçalarınızı güvenle bağlamanız için özel olarak üretilmiş, yüksek mukavemetli halat.",
         specs: [
             "Yüksek kopma mukavemeti",
@@ -291,6 +275,7 @@ export const productsData: Product[] = [
         slug: "afs-usturmaca-baglama-halati-tip-2",
         category: "line",
         image: "/usturmaca-baglama-halati-tip-2.webp",
+        emailImage: "https://afs-yacht-next.onrender.com/_next/image?url=%2Fusturmaca-baglama-halati-tip-2.webp&w=3840&q=75",
         description: "Premium görünüm ve üstün dayanıklılık sunan özel seri usturmaça halatı.",
         specs: [
             "Premium dokuma yapısı",

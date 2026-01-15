@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, Suspense, useRef } from 'react';
 import { useSearchParams } from "next/navigation";
 import { useTheme } from "./ThemeContext";
 import { useLanguage } from "./LanguageContext";
@@ -117,6 +117,7 @@ const FormContent = () => {
     const [emailError, setEmailError] = useState("");
     const [activeModal, setActiveModal] = useState<'privacy' | 'kvkk' | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const isSubmittingRef = useRef(false);
 
     useEffect(() => {
         const productParam = searchParams.get("product");
@@ -180,12 +181,16 @@ const FormContent = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
+        // Prevent double submission
+        if (isSubmittingRef.current) return;
+
         const isEmailValid = validateEmail(formData.email);
         const isPhoneValid = validatePhone(formData.phone);
 
         if (!isEmailValid || !isPhoneValid) return;
 
         setIsSubmitting(true);
+        isSubmittingRef.current = true;
 
         // Enhance payload with selected options
         const extendedSelectedProducts = selectedProducts.map(id => {
@@ -217,8 +222,11 @@ const FormContent = () => {
         } catch (error) {
             console.error(error);
             alert(t('error_submission') || "Bir hata oluştu. Lütfen tekrar deneyiniz.");
+            isSubmittingRef.current = false; // Release lock on error
         } finally {
             setIsSubmitting(false);
+            // Don't release lock on success to prevent re-submission while looking at success screen
+            if (step !== 3) isSubmittingRef.current = false;
         }
     };
 
@@ -351,24 +359,34 @@ const FormContent = () => {
 
             {/* Persistent Product Summary - Only show if step > 1 */}
             {selectedProductsList.length > 0 && step > 1 && (
-                <div className={`mb-8 p-4 rounded-sm border flex items-center gap-4 transition-all ${darkMode ? 'bg-brand-navy border-slate-700' : 'bg-white border-brand-gold/20'}`}>
-                    <div className="flex -space-x-4">
-                        {selectedProductsList.map(p => (
-                            <img key={p.id} src={p.image} alt={p.name} className="w-16 h-16 object-contain bg-white rounded-sm border border-brand-gold/20" />
-                        ))}
+                <div className={`mb-8 rounded-sm border overflow-hidden transition-all ${darkMode ? 'bg-brand-navy border-slate-700' : 'bg-white border-brand-gold/20'}`}>
+                    <div className={`p-4 border-b flex items-center justify-between ${darkMode ? 'border-slate-700 bg-slate-800' : 'border-brand-gold/10 bg-brand-gold/5'}`}>
+                        <span className="text-xs uppercase tracking-widest text-brand-gold font-bold">SEÇİLEN ÜRÜNLER ({selectedProductsList.length})</span>
+                        {step > 1 && step < 3 && (
+                            <button onClick={() => setStep(1)} className="text-xs underline opacity-50 hover:opacity-100 transition-opacity">
+                                {t('contact_change')}
+                            </button>
+                        )}
                     </div>
 
-                    <div>
-                        <span className="text-[10px] uppercase tracking-widest text-brand-gold font-bold">İLGİLENDİĞİNİZ ÜRÜNLER</span>
-                        <h4 className={`text-xl font-serif ${darkMode ? 'text-white' : 'text-slate-900'}`}>{selectedProductsList.map(p => {
+                    <div className="p-4 flex flex-col gap-3">
+                        {selectedProductsList.map(p => {
                             const details = selectedProductDetails[p.id];
-                            const detailStr = details ? ` (${Object.values(details).join(', ')})` : '';
-                            return p.name + detailStr;
-                        }).join(", ")}</h4>
+                            return (
+                                <div key={p.id} className={`flex items-start gap-4 p-3 rounded-sm border ${darkMode ? 'border-slate-700 bg-slate-900/50' : 'border-slate-100 bg-slate-50'}`}>
+                                    <img src={p.image} alt={p.name} className="w-12 h-12 object-contain bg-white rounded-sm border border-slate-200 shrink-0" />
+                                    <div className="flex-1 min-w-0">
+                                        <div className={`font-serif font-bold ${darkMode ? 'text-white' : 'text-slate-900'}`}>{p.name}</div>
+                                        {details && Object.keys(details).length > 0 && (
+                                            <div className="text-xs text-brand-gold mt-1">
+                                                {Object.values(details).join(', ')}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
-                    {step > 1 && step < 3 && (
-                        <button onClick={() => setStep(1)} className="ml-auto text-xs underline opacity-50 hover:opacity-100">{t('contact_change')}</button>
-                    )}
                 </div>
             )}
 
