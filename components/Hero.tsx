@@ -62,10 +62,7 @@ export const Hero = () => {
                         />
                     </div>
 
-                    {/* Decorative circle behind product */}
-                    <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] rounded-full border border-brand-gold/20 z-0 transition-transform duration-700 ease-out`}
-                        style={{ transform: `translate(-50%, -50%) translate(${mousePos.x}px, ${mousePos.y}px)` }}
-                    ></div>
+                    {/* Decorative circle behind product - REMOVED */}
                 </div>
             </div>
         </section>

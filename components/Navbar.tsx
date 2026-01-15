@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "./ThemeContext";
 import { useLanguage } from "./LanguageContext";
-import { Sun, Moon, ChevronRight, Menu, X } from "./icons";
+import { Sun, Moon, ChevronRight, Menu, X, ChevronDown } from "./icons";
 import { flags, Language } from "../data/translations";
 
 export const Navbar = () => {
@@ -15,6 +15,7 @@ export const Navbar = () => {
     const [isLangOpen, setIsLangOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [userOpenedLang, setUserOpenedLang] = useState(false); // Separate state for mobile lang dropdown
+    const [openSection, setOpenSection] = useState<string | null>(null); // Accordion state
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -32,8 +33,8 @@ export const Navbar = () => {
     }, [isMobileMenuOpen]);
 
     const navBg = isScrolled
-        ? (darkMode ? 'bg-brand-navy/90' : 'bg-white/95 border-b border-slate-200')
-        : 'bg-transparent border-transparent';
+        ? (darkMode ? 'bg-brand-navy/90' : 'bg-white/95')
+        : 'bg-transparent';
 
     const textColor = isScrolled
         ? (darkMode ? 'text-slate-300' : 'text-slate-600')
@@ -47,7 +48,7 @@ export const Navbar = () => {
     const hoverColor = 'hover:text-brand-gold';
 
     return (
-        <nav className={`fixed w-full z-50 transition-all duration-500 ease-in-out border-b ${navBg} py-4`}>
+        <nav className={`fixed w-full z-50 transition-all duration-500 ease-in-out border-b border-brand-gold ${navBg} py-4`}>
 
             <div className="container mx-auto px-6 flex justify-between items-center">
                 <div className="flex items-center gap-2 z-50">
@@ -152,84 +153,114 @@ export const Navbar = () => {
             </div>
 
             {/* Mobile Menu Overlay */}
-            <div className={`fixed inset-0 bg-white dark:bg-brand-navy z-40 transition-transform duration-300 ease-in-out pt-24 px-6 md:hidden overflow-y-auto ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-                <div className="flex flex-col space-y-6 pb-20">
-                    <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg uppercase tracking-widest font-medium border-b pb-2 ${darkMode ? 'border-slate-800 text-white' : 'border-slate-100 text-brand-navy'}`}>ANASAYFA</Link>
+            <div className={`fixed inset-0 bg-brand-navy z-[100] transition-transform duration-300 ease-in-out md:hidden flex flex-col ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+                {/* Fixed Header */}
+                <div className="flex justify-between items-center px-6 py-4 flex-none border-b border-white/5">
+                    <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
+                        <Image
+                            src="/logo.png"
+                            alt="AFS Yacht Logo"
+                            width={80}
+                            height={80}
+                            className="object-contain brightness-0 invert"
+                        />
+                    </Link>
+                    <button
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="p-2 text-white hover:text-brand-gold transition-colors"
+                    >
+                        <X size={28} />
+                    </button>
+                </div>
 
-                    {/* Mobile Corporate */}
-                    <div className="flex flex-col space-y-3 pb-2 border-b border-slate-100 dark:border-slate-800">
-                        <span className={`text-lg uppercase tracking-widest font-medium ${darkMode ? 'text-slate-400' : 'text-slate-400'}`}>KURUMSAL</span>
-                        <div className="pl-4 flex flex-col space-y-3">
-                            <Link href="/hakkimizda" onClick={() => setIsMobileMenuOpen(false)} className={`text-sm ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>Hakkımızda</Link>
-                            <Link href="/kalite-politikasi" onClick={() => setIsMobileMenuOpen(false)} className={`text-sm ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>Kalite Politikamız</Link>
-                            <Link href="/gizlilik-politikasi" onClick={() => setIsMobileMenuOpen(false)} className={`text-sm ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('footer_privacy')}</Link>
-                            <Link href="/kvkk" onClick={() => setIsMobileMenuOpen(false)} className={`text-sm ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>KVKK Aydınlatma Metni</Link>
-                        </div>
-                    </div>
+                {/* Scrollable Content */}
+                <div className="flex-1 overflow-y-auto px-6 py-8 flex flex-col space-y-6">
+                    <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="text-xl uppercase tracking-widest font-medium text-white block">ANASAYFA</Link>
 
-                    {/* Mobile Collection */}
-                    <div className="flex flex-col space-y-3 pb-2 border-b border-slate-100 dark:border-slate-800">
-                        <Link href="/koleksiyon" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg uppercase tracking-widest font-medium ${darkMode ? 'text-white' : 'text-brand-navy'}`}>{t('nav_collection')}</Link>
-                        <div className="pl-4 flex flex-col space-y-3">
-                            <Link href="/koleksiyon#hooks" onClick={() => setIsMobileMenuOpen(false)} className={`text-sm text-white dark:text-white`}>{t('footer_col_hooks')}</Link>
-                            <Link href="/koleksiyon#fenders" onClick={() => setIsMobileMenuOpen(false)} className={`text-sm text-white dark:text-white`}>{t('cat_fenders')}</Link>
-                            <Link href="/koleksiyon#lines" onClick={() => setIsMobileMenuOpen(false)} className={`text-sm text-white dark:text-white`}>{t('cat_fender_lines')}</Link>
-                            <Link href="/koleksiyon#covers" onClick={() => setIsMobileMenuOpen(false)} className={`text-sm text-white dark:text-white`}>{t('cat_fender_covers')}</Link>
-                            <Link href="/koleksiyon#cleats" onClick={() => setIsMobileMenuOpen(false)} className={`text-sm text-white dark:text-white`}>{t('footer_col_cleats')}</Link>
-                            <Link href="/koleksiyon#ladders" onClick={() => setIsMobileMenuOpen(false)} className={`text-sm text-white dark:text-white`}>{t('footer_col_ladders')}</Link>
-                            <Link href="/koleksiyon#dinghy-hangers" onClick={() => setIsMobileMenuOpen(false)} className={`text-sm text-white dark:text-white`}>{t('cat_dinghy_hangers')}</Link>
-                        </div>
-                    </div>
+                    {/* Mobile Corporate Accordion */}
+                    <div className="flex flex-col">
+                        <button
+                            onClick={() => setOpenSection(openSection === 'corporate' ? null : 'corporate')}
+                            className="w-full flex justify-between items-center text-xl uppercase tracking-widest font-medium text-white group"
+                        >
+                            <span>KURUMSAL</span>
+                            <ChevronDown size={20} className={`transition-transform duration-300 ${openSection === 'corporate' ? 'rotate-180' : ''} text-white/70 group-hover:text-white`} />
+                        </button>
 
-                    <Link href="/blog" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg uppercase tracking-widest font-medium border-b pb-2 ${darkMode ? 'border-slate-800 text-white' : 'border-slate-100 text-brand-navy'}`}>{t('nav_blog')}</Link>
-                    <Link href="/iletisim" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg uppercase tracking-widest font-medium border-b pb-2 ${darkMode ? 'border-slate-800 text-white' : 'border-slate-100 text-brand-navy'}`}>{t('nav_contact')}</Link>
-
-                    <div className="pt-2 pb-4">
-                        <Link href="/teklif" onClick={() => setIsMobileMenuOpen(false)} className={`text-center block w-full py-4 text-sm font-bold uppercase tracking-widest bg-brand-gold text-white rounded-sm hover:bg-brand-gold/90 transition-colors`}>{t('nav_quote')}</Link>
-                    </div>
-
-                    {/* Mobile Settings */}
-                    <div className="pt-4 flex flex-col space-y-6 border-t border-slate-100 dark:border-slate-800">
-                        {/* Dark Mode */}
-                        <div className="flex justify-between items-center">
-                            <span className={`text-sm font-medium ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>Karanlık Mod</span>
-                            <button onClick={toggleDarkMode} className={`p-2 rounded-full border ${darkMode ? 'border-slate-700 text-yellow-400' : 'border-slate-200 text-slate-600'}`}>
-                                {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-                            </button>
-                        </div>
-
-                        {/* Language Dropdown Style */}
-                        <div className="flex justify-between items-center">
-                            <span className={`text-sm font-medium ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>Dil Seçimi</span>
-
-                            <div className="relative">
-                                <button
-                                    onClick={() => setUserOpenedLang(!userOpenedLang)}
-                                    className={`flex items-center gap-2 px-4 py-2 rounded-sm border text-sm font-bold transition-colors ${darkMode ? 'border-slate-700 text-slate-300' : 'border-slate-200 text-slate-600'}`}
-                                >
-                                    <span className="text-xl">{flags[language]}</span>
-                                    <span>{language}</span>
-                                    <ChevronRight size={14} className={`transform transition-transform ${userOpenedLang ? 'rotate-90' : ''}`} />
-                                </button>
-
-                                {userOpenedLang && (
-                                    <div className={`absolute bottom-full right-0 mb-2 w-32 py-2 rounded-sm border overflow-hidden shadow-xl z-50 ${darkMode ? 'bg-brand-navy border-slate-700' : 'bg-white border-slate-200'}`}>
-                                        {Object.entries(flags).map(([code, flag]) => (
-                                            <button
-                                                key={code}
-                                                onClick={() => {
-                                                    setLanguage(code as Language);
-                                                    setUserOpenedLang(false);
-                                                }}
-                                                className={`w-full text-left px-4 py-2 text-xs font-bold flex items-center gap-3 hover:bg-brand-gold/10 hover:text-brand-gold transition-colors ${language === code ? 'text-brand-gold bg-brand-gold/5' : (darkMode ? 'text-slate-300' : 'text-slate-600')}`}
-                                            >
-                                                <span className="text-lg">{flag}</span>
-                                                {code}
-                                            </button>
-                                        ))}
-                                    </div>
-                                )}
+                        <div className={`overflow-hidden transition-all duration-300 ${openSection === 'corporate' ? 'max-h-64 opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
+                            <div className="pl-4 flex flex-col space-y-4 border-l border-white/20 ml-1">
+                                <Link href="/hakkimizda" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">Hakkımızda</Link>
+                                <Link href="/kalite-politikasi" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">Kalite Politikamız</Link>
+                                <Link href="/gizlilik-politikasi" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('footer_privacy')}</Link>
+                                <Link href="/kvkk" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">KVKK Aydınlatma Metni</Link>
                             </div>
+                        </div>
+                    </div>
+
+                    {/* Mobile Collection Accordion */}
+                    <div className="flex flex-col">
+                        <button
+                            onClick={() => setOpenSection(openSection === 'collection' ? null : 'collection')}
+                            className="w-full flex justify-between items-center text-xl uppercase tracking-widest font-medium text-white group"
+                        >
+                            <span>{t('nav_collection')}</span>
+                            <ChevronDown size={20} className={`transition-transform duration-300 ${openSection === 'collection' ? 'rotate-180' : ''} text-white/70 group-hover:text-white`} />
+                        </button>
+
+                        <div className={`overflow-hidden transition-all duration-300 ${openSection === 'collection' ? 'max-h-[500px] opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
+                            <div className="pl-4 flex flex-col space-y-4 border-l border-white/20 ml-1">
+                                <Link href="/koleksiyon#hooks" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('footer_col_hooks')}</Link>
+                                <Link href="/koleksiyon#fenders" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('cat_fenders')}</Link>
+                                <Link href="/koleksiyon#lines" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('cat_fender_lines')}</Link>
+                                <Link href="/koleksiyon#covers" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('cat_fender_covers')}</Link>
+                                <Link href="/koleksiyon#cleats" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('footer_col_cleats')}</Link>
+                                <Link href="/koleksiyon#ladders" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('footer_col_ladders')}</Link>
+                                <Link href="/koleksiyon#dinghy-hangers" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('cat_dinghy_hangers')}</Link>
+                            </div>
+                        </div>
+                    </div>
+
+                    <Link href="/blog" onClick={() => setIsMobileMenuOpen(false)} className="text-xl uppercase tracking-widest font-medium text-white block">{t('nav_blog')}</Link>
+                    <Link href="/iletisim" onClick={() => setIsMobileMenuOpen(false)} className="text-xl uppercase tracking-widest font-medium text-white block">{t('nav_contact')}</Link>
+
+                    <div className="pt-4 pb-12">
+                        <Link href="/teklif" onClick={() => setIsMobileMenuOpen(false)} className="text-center block w-full py-4 text-base font-bold uppercase tracking-widest bg-brand-gold text-white rounded-sm hover:bg-brand-gold/90 transition-colors shadow-lg">{t('nav_quote')}</Link>
+                    </div>
+
+                    {/* Mobile Settings - Absolute Bottom Row */}
+                    <div className="mt-auto pt-6 border-t border-white/10 flex items-center gap-6 pb-8">
+                        {/* Dark Mode Toggle */}
+                        <button onClick={toggleDarkMode} className="p-2 text-white/80 hover:text-white transition-colors">
+                            {darkMode ? <Sun size={24} /> : <Moon size={24} />}
+                        </button>
+
+                        {/* Language Dropdown */}
+                        <div className="relative">
+                            <button
+                                onClick={() => setUserOpenedLang(!userOpenedLang)}
+                                className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+                            >
+                                <span className="text-2xl">{flags[language]}</span>
+                                <ChevronDown size={14} className={`transform transition-transform ${userOpenedLang ? 'rotate-180' : ''}`} />
+                            </button>
+
+                            {userOpenedLang && (
+                                <div className="absolute bottom-full left-0 mb-2 w-32 py-2 rounded-sm border border-slate-700 bg-brand-navy overflow-hidden shadow-xl z-50">
+                                    {Object.entries(flags).map(([code, flag]) => (
+                                        <button
+                                            key={code}
+                                            onClick={() => {
+                                                setLanguage(code as Language);
+                                                setUserOpenedLang(false);
+                                            }}
+                                            className={`w-full text-left px-4 py-2 text-xs font-bold flex items-center gap-3 hover:bg-white/10 transition-colors ${language === code ? 'text-brand-gold' : 'text-slate-300'}`}
+                                        >
+                                            <span className="text-lg">{flag}</span>
+                                            {code}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -240,10 +271,10 @@ export const Navbar = () => {
                 <div
                     className="w-[200%] h-full animate-shadow-move absolute top-0 left-0"
                     style={{
-                        background: `linear-gradient(90deg, transparent 0%, transparent 40%, ${darkMode ? '#af8b4d' : '#af8b4d'} 50%, transparent 60%, transparent 100%)`
+                        background: `linear-gradient(90deg, transparent 0%, transparent 40%, rgba(255,255,255,0.8) 50%, transparent 60%, transparent 100%)`
                     }}
                 ></div>
             </div>
-        </nav>
+        </nav >
     );
 };

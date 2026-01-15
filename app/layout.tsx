@@ -36,10 +36,7 @@ export default function RootLayout({
         className={`${manrope.variable} ${playfair.variable} antialiased transition-colors duration-500`}
       >
         <Providers>
-          <Navbar />
           {children}
-          <Footer />
-          <FloatingWhatsapp />
         </Providers>
       </body>
     </html>
