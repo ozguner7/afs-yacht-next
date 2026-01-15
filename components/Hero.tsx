@@ -32,7 +32,7 @@ export const Hero = () => {
                 <div className="absolute bottom-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-500 blur-[100px]"></div>
             </div>
 
-            <div className="container mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center h-full pt-20">
+            <div className="container mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center h-full pt-32 md:pt-20">
                 {/* Text Content */}
                 <div className="text-center md:text-left order-2 md:order-1">
                     <div className="mb-6 animate-fade-in-up">
@@ -52,7 +52,7 @@ export const Hero = () => {
                 {/* Parallax Image / 3D Model */}
                 <div className="relative order-1 md:order-2 flex justify-center items-center">
                     <div
-                        className="relative z-10 w-full max-w-lg transition-transform duration-100 ease-out"
+                        className="relative z-10 w-[75%] md:w-full max-w-lg transition-transform duration-100 ease-out"
                         style={{ transform: `translate(${mousePos.x * -1}px, ${mousePos.y * -1}px) rotate(${mousePos.x * 0.5}deg)` }}
                     >
                         <img
