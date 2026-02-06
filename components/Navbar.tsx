@@ -275,6 +275,7 @@ export const Navbar = () => {
                     }}
                 ></div>
             </div>
+            {/* End LED Border Effect */}
         </nav >
     );
 };

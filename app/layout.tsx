@@ -18,7 +18,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "AFS Yacht - En iyilerin tercihi",
+  title: "AFS Yacht - Gerçek Deniz Koşulları İçin Özel Tasarım",
   description: "Zanaatın Deniz Hali - Handmade Marine Goods",
   icons: {
     icon: '/logo.png',

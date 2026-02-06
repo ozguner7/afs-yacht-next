@@ -4,6 +4,7 @@ import React, { useState, useEffect, Suspense, useRef } from 'react';
 import { useSearchParams } from "next/navigation";
 import { useTheme } from "./ThemeContext";
 import { useLanguage } from "./LanguageContext";
+import { useQuote } from "./QuoteContext";
 import { ArrowRight, Check, X } from "./icons";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
@@ -98,21 +99,24 @@ const FormContent = () => {
     const { darkMode } = useTheme();
     const { t } = useLanguage();
     const searchParams = useSearchParams();
-    const [step, setStep] = useState(1);
-    const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
-    const [selectedProductDetails, setSelectedProductDetails] = useState<Record<string, Record<string, string>>>({}); // { productId: { optionLabel: value } }
 
-    const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        yachtName: "", // Optional: Yacht/Company Name
-        city: "", // Optional
-        note: "",
-        kvkkParams: false,
-        marketingConsent: false
-    });
+
+    // Replace local state with Global Context
+    const {
+        selectedProducts,
+        setSelectedProducts,
+        selectedProductDetails,
+        setSelectedProductDetails,
+        formData,
+        setFormData,
+        currentStep, // Get currentStep
+        setCurrentStep // Get setCurrentStep
+    } = useQuote();
+
+    // Map global step to local variable names to minimize refactoring
+    const step = currentStep;
+    const setStep = setCurrentStep;
+
     const [phoneError, setPhoneError] = useState("");
     const [emailError, setEmailError] = useState("");
     const [activeModal, setActiveModal] = useState<'privacy' | 'kvkk' | null>(null);
@@ -143,6 +147,7 @@ const FormContent = () => {
                 }
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchParams]);
 
     const handleNext = () => {

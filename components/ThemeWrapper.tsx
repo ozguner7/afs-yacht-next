@@ -3,6 +3,8 @@
 import { useTheme } from "@/components/ThemeContext";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { FloatingBasket } from "@/components/FloatingBasket";
+import { CookieConsent } from "@/components/CookieConsent";
 
 export const ThemeWrapper = ({ children }: { children: React.ReactNode }) => {
     const { darkMode } = useTheme();
@@ -13,6 +15,8 @@ export const ThemeWrapper = ({ children }: { children: React.ReactNode }) => {
             <main className="flex-grow">
                 {children}
             </main>
+            <FloatingBasket />
+            <CookieConsent />
             <Footer />
         </div>
     );
