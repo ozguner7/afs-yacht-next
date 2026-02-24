@@ -1,14 +1,27 @@
 <IfModule mod_rewrite.c>
+  DirectorySlash Off
   RewriteEngine On
-  RewriteBase /
 
   # Redirect to HTTPS
-  # RewriteCond %{HTTPS} off
-  # RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
-  # Remove trailing slash
+  # Redirect non-www to www
+  RewriteCond %{HTTP_HOST} ^afsyacht\.com\.tr [NC]
+  RewriteRule ^(.*)$ https://www.afsyacht.com.tr/$1 [L,R=301]
+
+  RewriteRule ^([^/]+)/$ /$1.html [L]
+  RewriteRule ^([^/]+)/([^/]+)/$ /$1/$2.html [L]
+  RewriteRule ^([^/]+)/([^/]+)/([^/]+)/$ /$1/$2/$3.html [L]
+  RewriteRule ^([^/]+)/([^/]+)/([^/]+)/([^/]+)/$ /$1/$2/$3/$4.html [L]
+
+  # Remove trailing slashes if not a directory
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+  RewriteRule ^([^/]+)/$ $1.html [L]
+  RewriteRule ^([^/]+)/([^/]+)/$ /$1/$2.html [L]
+  RewriteRule ^([^/]+)/([^/]+)/([^/]+)/$ /$1/$2/$3.html [L]
 
   # Serve .html files if they exist (handling extensionless URLs)
   RewriteCond %{REQUEST_FILENAME} !-d
