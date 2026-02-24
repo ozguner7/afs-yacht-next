@@ -6,7 +6,7 @@ import Link from "next/link";
 import { productsData } from "@/data/products";
 import { useTheme } from "./ThemeContext";
 import { useLanguage } from "./LanguageContext";
-import { Check, ArrowRight } from "./icons";
+import { Check, ArrowRight, ArrowLeft } from "./icons";
 
 export const ProductCarousel = () => {
     const { darkMode } = useTheme();
@@ -46,6 +46,14 @@ export const ProductCarousel = () => {
         return map[cat] || cat;
     };
 
+    const handlePrev = () => {
+        setActiveIndex((prev) => (prev - 1 + len) % len);
+    };
+
+    const handleNext = () => {
+        setActiveIndex((prev) => (prev + 1) % len);
+    };
+
     return (
         <section className={`py-0 relative overflow-hidden ${darkMode ? 'bg-slate-900 border-y border-slate-800' : 'bg-slate-50 border-y border-slate-200'}`}>
             <div className="container mx-auto px-0 md:px-6">
@@ -56,6 +64,8 @@ export const ProductCarousel = () => {
                         className="w-full md:w-1/2 relative bg-white overflow-hidden group"
                         onMouseEnter={() => setIsPaused(true)}
                         onMouseLeave={() => setIsPaused(false)}
+                        onTouchStart={() => setIsPaused(true)}
+                        onTouchEnd={() => setIsPaused(false)}
                     >
                         {carouselProducts.map((product, index) => (
                             <div
@@ -69,12 +79,13 @@ export const ProductCarousel = () => {
                                     } ${index !== activeIndex && 'pointer-events-none'}`}
                             >
                                 <div className="relative w-full h-full flex items-center justify-center p-8 md:p-16">
-                                    <div className="relative w-1/2 h-1/2">
+                                    {/* Responsive container for image */}
+                                    <div className="relative w-full h-[300px] md:w-3/4 md:h-[400px] flex items-center justify-center">
                                         <Image
                                             src={product.image}
                                             alt={product.name}
                                             fill
-                                            className="object-contain hover:scale-105 transition-transform duration-700"
+                                            className="object-contain hover:scale-105 transition-transform duration-700 p-4"
                                             priority={index === activeIndex}
                                         />
                                     </div>
@@ -82,8 +93,26 @@ export const ProductCarousel = () => {
                             </div>
                         ))}
 
+                        {/* Navigation Arrows positioned at the bottom right of the image container */}
+                        <div className="absolute bottom-6 right-6 flex items-center gap-3 z-30">
+                            <button
+                                onClick={handlePrev}
+                                className="w-12 h-12 bg-white/90 dark:bg-slate-900/90 shadow-lg rounded-full flex items-center justify-center hover:bg-brand-gold hover:text-white hover:border-brand-gold transition-colors border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200"
+                                aria-label="Önceki ürün"
+                            >
+                                <ArrowLeft size={24} />
+                            </button>
+                            <button
+                                onClick={handleNext}
+                                className="w-12 h-12 bg-white/90 dark:bg-slate-900/90 shadow-lg rounded-full flex items-center justify-center hover:bg-brand-gold hover:text-white hover:border-brand-gold transition-colors border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200"
+                                aria-label="Sonraki ürün"
+                            >
+                                <ArrowRight size={24} />
+                            </button>
+                        </div>
+
                         {/* Interactive Progress Bar at Bottom of Image Area */}
-                        <div className="absolute bottom-0 left-0 w-full h-1 bg-slate-200 dark:bg-slate-800 z-20">
+                        <div className="absolute bottom-0 left-0 w-full h-1 bg-slate-200 dark:bg-slate-800 z-30">
                             <div
                                 className="h-full bg-brand-gold transition-all duration-300 ease-linear"
                                 style={{ width: `${((activeIndex + 1) / len) * 100}%` }}
