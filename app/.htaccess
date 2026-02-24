@@ -1,0 +1,11 @@
+# HTTPS Yönlendirmesini Kapatma ve Standart HTTP Ayarları
+RewriteEngine On
+
+# Eğer sunucu üzerinde otomatik bir HTTPS zorlaması varsa bunu engellemeye çalışır
+RewriteCond %{HTTPS} on
+RewriteRule ^(.*)$ http://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Tarayıcıya sitenin güvenli olmadığını bildiren HSTS başlıklarını temizlemeye yardımcı olur
+<IfModule mod_headers.c>
+    Header always unset Strict-Transport-Security
+</IfModule>
