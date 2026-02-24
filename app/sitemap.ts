@@ -2,6 +2,9 @@ import { MetadataRoute } from 'next';
 import { productsData } from '@/data/products';
 import { blogPosts } from '@/data/blog-posts';
 
+export const dynamic = 'force-static';
+
+
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://www.afsyacht.com.tr';
 

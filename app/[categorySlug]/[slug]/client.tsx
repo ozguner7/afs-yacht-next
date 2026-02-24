@@ -60,7 +60,7 @@ export default function ProductClient({ slug }: ProductClientProps) {
         "@context": "https://schema.org",
         "@type": "Product",
         "name": product.name,
-        "image": \`https://www.afsyacht.com.tr\${product.detailImage || product.image}\`,
+        "image": `https://www.afsyacht.com.tr${product.detailImage || product.image}`,
         "description": product.description,
         "category": product.categoryName,
         "brand": {
@@ -72,12 +72,12 @@ export default function ProductClient({ slug }: ProductClientProps) {
             "availability": "https://schema.org/InStock",
             "priceCurrency": "TRY",
             "price": "0",
-            "url": \`https://www.afsyacht.com.tr/\${product.categorySlug}/\${product.slug}\`
+            "url": `https://www.afsyacht.com.tr/${product.categorySlug}/${product.slug}`
         }
     };
 
     return (
-        <div className={\`min-h-screen pt-36 pb-20 \${bgClass} transition-colors duration-500\`}>
+        <div className={`min-h-screen pt-36 pb-20 ${bgClass} transition-colors duration-500`}>
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
@@ -86,14 +86,14 @@ export default function ProductClient({ slug }: ProductClientProps) {
 
                 {/* Breadcrumbs */}
                 <Breadcrumbs items={[
-                    { label: product.categoryName, href: `/ ${ product.categorySlug }` },
+                    { label: product.categoryName, href: `/ ${product.categorySlug}` },
                     { label: product.name, href: '#' }
                 ]} />
 
                 {/* Hero / Header */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24 items-center">
                     <div className="animate-fade-in-left relative group flex justify-center">
-                        <div className={`aspect - square w - full md: w - 3 / 4 overflow - hidden rounded - sm flex items - center justify - center p - 8 ${ darkMode ? 'bg-white/5' : 'bg-brand-navy/5' } `}>
+                        <div className={`aspect - square w - full md: w - 3 / 4 overflow - hidden rounded - sm flex items - center justify - center p - 8 ${darkMode ? 'bg-white/5' : 'bg-brand-navy/5'} `}>
                             <div className="relative w-full h-full">
                                 <Image
                                     src={product.detailImage || product.image}
@@ -109,23 +109,23 @@ export default function ProductClient({ slug }: ProductClientProps) {
 
                     <div className="animate-fade-in-right">
                         <h2 className="text-4xl md:text-5xl font-bold text-brand-gold tracking-widest uppercase mb-3">{product.name}</h2>
-                        <h1 className={`text - lg lg: text - xl font - bold font - serif opacity - 50 uppercase mb - 8 ${ textMain } `}>
+                        <h1 className={`text - lg lg: text - xl font - bold font - serif opacity - 50 uppercase mb - 8 ${textMain} `}>
                             {product.categoryName}
                         </h1>
 
-                        <p className={`text - lg leading - relaxed mb - 10 ${ textSub } `}>
+                        <p className={`text - lg leading - relaxed mb - 10 ${textSub} `}>
                             {product.description}
                         </p>
 
                         {/* Product Options (Dropdowns) */}
                         {product.options && product.options.map((option, idx) => (
                             <div key={idx} className="mb-8">
-                                <label className={`block text - sm font - bold mb - 2 uppercase tracking - wider ${ textMain } `}>
+                                <label className={`block text - sm font - bold mb - 2 uppercase tracking - wider ${textMain} `}>
                                     {option.label}
                                 </label>
                                 <div className="relative">
                                     <select
-                                        className={`appearance - none w - full md: w - 64 px - 4 py - 3 pr - 8 rounded - sm border ${ borderClass } bg - transparent ${ textMain } focus: outline - none focus: border - brand - gold transition - colors cursor - pointer`}
+                                        className={`appearance - none w - full md: w - 64 px - 4 py - 3 pr - 8 rounded - sm border ${borderClass} bg - transparent ${textMain} focus: outline - none focus: border - brand - gold transition - colors cursor - pointer`}
                                         value={selectedOptions[option.label] || ""}
                                         onChange={(e) => handleOptionChange(option.label, e.target.value)}
                                     >
@@ -152,50 +152,50 @@ export default function ProductClient({ slug }: ProductClientProps) {
                             {/* Whatsapp Button inline as alternative */}
                             <a
                                 href={`https://wa.me/905549753777?text=Merhaba ${product.name} ile ilgili sorularım var.`}
-    target = "_blank"
-    rel = "noopener noreferrer"
-    className = {`px-8 py-4 border-2 font-bold uppercase tracking-widest text-sm rounded-sm transition-colors text-center ${darkMode ? 'border-white text-white hover:bg-white hover:text-brand-navy' : 'border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white'}`
-}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`px-8 py-4 border-2 font-bold uppercase tracking-widest text-sm rounded-sm transition-colors text-center ${darkMode ? 'border-white text-white hover:bg-white hover:text-brand-navy' : 'border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white'}`
+                                }
                             >
-    WhatsApp & apos;tan Sorun
+                                WhatsApp & apos;tan Sorun
                             </a >
                         </div >
                     </div >
                 </div >
 
-    {/* Technical Specs */ }
-    < div className = "mb-24 animate-fade-in-up" >
-        <div className={`p-10 rounded-sm border ${borderClass} ${darkMode ? 'bg-slate-900' : 'bg-white'}`}>
-            <div className="grid grid-cols-1 gap-12">
-                <div>
-                    <h3 className={`text-2xl font-serif mb-8 ${textMain}`}>Teknik Özellikler</h3>
-                    <div className="space-y-4">
-                        {product.specs.map((spec, index) => (
-                            <div key={index} className="flex items-start gap-4 p-4 rounded-sm transition-colors hover:bg-brand-gold/5">
-                                <div className="mt-1 text-brand-gold shrink-0"><Check size={20} /></div>
-                                <p className={`${textSub}`}>{spec}</p>
+                {/* Technical Specs */}
+                < div className="mb-24 animate-fade-in-up" >
+                    <div className={`p-10 rounded-sm border ${borderClass} ${darkMode ? 'bg-slate-900' : 'bg-white'}`}>
+                        <div className="grid grid-cols-1 gap-12">
+                            <div>
+                                <h3 className={`text-2xl font-serif mb-8 ${textMain}`}>Teknik Özellikler</h3>
+                                <div className="space-y-4">
+                                    {product.specs.map((spec, index) => (
+                                        <div key={index} className="flex items-start gap-4 p-4 rounded-sm transition-colors hover:bg-brand-gold/5">
+                                            <div className="mt-1 text-brand-gold shrink-0"><Check size={20} /></div>
+                                            <p className={`${textSub}`}>{spec}</p>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                        ))}
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
                 </div >
 
-    {/* Additional Content Sections */ }
-    < div className = "grid grid-cols-1 md:grid-cols-2 gap-12 mb-24 animate-fade-in-up" >
-    {
-        product.fullDescription.map((section, idx) => (
-            <div key={idx} className={`p-10 rounded-sm border ${borderClass} ${darkMode ? 'bg-slate-900' : 'bg-white'}`}>
-                <h3 className={`text-2xl font-serif mb-6 ${textMain}`}>{section.title}</h3>
-                <div className={`space-y-4 ${textSub}`}>
-                    {section.content.map((p, i) => (
-                        <p key={i} className="leading-relaxed">{p}</p>
-                    ))}
-                </div>
-            </div>
-        ))
-    }
+                {/* Additional Content Sections */}
+                < div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-24 animate-fade-in-up" >
+                    {
+                        product.fullDescription.map((section, idx) => (
+                            <div key={idx} className={`p-10 rounded-sm border ${borderClass} ${darkMode ? 'bg-slate-900' : 'bg-white'}`}>
+                                <h3 className={`text-2xl font-serif mb-6 ${textMain}`}>{section.title}</h3>
+                                <div className={`space-y-4 ${textSub}`}>
+                                    {section.content.map((p, i) => (
+                                        <p key={i} className="leading-relaxed">{p}</p>
+                                    ))}
+                                </div>
+                            </div>
+                        ))
+                    }
                 </div >
 
             </div >
