@@ -93,18 +93,20 @@ export const ProductCarousel = () => {
                             </div>
                         ))}
 
-                        {/* Navigation Arrows positioned at the bottom right of the image container */}
-                        <div className="absolute bottom-6 right-6 flex items-center gap-3 z-30">
+                        {/* Navigation Arrows positioned at the center of the image container */}
+                        <div className="absolute inset-y-0 left-4 md:left-6 flex items-center z-30 pointer-events-none">
                             <button
                                 onClick={handlePrev}
-                                className="w-12 h-12 bg-white/90 dark:bg-slate-900/90 shadow-lg rounded-full flex items-center justify-center hover:bg-brand-gold hover:text-white hover:border-brand-gold transition-colors border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200"
+                                className="w-10 h-10 md:w-12 md:h-12 bg-white/90 dark:bg-slate-900/90 shadow-lg rounded-full flex items-center justify-center hover:bg-brand-gold hover:text-white hover:border-brand-gold transition-colors border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 pointer-events-auto"
                                 aria-label="Önceki ürün"
                             >
                                 <ArrowLeft size={24} />
                             </button>
+                        </div>
+                        <div className="absolute inset-y-0 right-4 md:right-6 flex items-center z-30 pointer-events-none">
                             <button
                                 onClick={handleNext}
-                                className="w-12 h-12 bg-white/90 dark:bg-slate-900/90 shadow-lg rounded-full flex items-center justify-center hover:bg-brand-gold hover:text-white hover:border-brand-gold transition-colors border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200"
+                                className="w-10 h-10 md:w-12 md:h-12 bg-white/90 dark:bg-slate-900/90 shadow-lg rounded-full flex items-center justify-center hover:bg-brand-gold hover:text-white hover:border-brand-gold transition-colors border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 pointer-events-auto"
                                 aria-label="Sonraki ürün"
                             >
                                 <ArrowRight size={24} />
