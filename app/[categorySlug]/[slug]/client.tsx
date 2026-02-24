@@ -1,6 +1,6 @@
 "use client";
 
-import { notFound } from "next/navigation"; // useParams removed as we will pass slug via props
+import { notFound } from "next/navigation";
 import { productsData } from "@/data/products";
 import { useTheme } from "@/components/ThemeContext";
 import { useLanguage } from "@/components/LanguageContext";
@@ -62,8 +62,7 @@ export default function ProductClient({ slug }: ProductClientProps) {
 
                 {/* Breadcrumbs */}
                 <Breadcrumbs items={[
-                    { label: t('nav_collection'), href: '/koleksiyon' },
-                    { label: "Usturmaça Askısı", href: '/koleksiyon' }, // Note: This hardcoded breadcrumb might need future dynamic adjustment based on category
+                    { label: product.categoryName, href: `/${product.categorySlug}` },
                     { label: product.name, href: '#' }
                 ]} />
 
@@ -87,10 +86,7 @@ export default function ProductClient({ slug }: ProductClientProps) {
                     <div className="animate-fade-in-right">
                         <h2 className="text-4xl md:text-5xl font-bold text-brand-gold tracking-widest uppercase mb-3">{product.name}</h2>
                         <h1 className={`text-lg lg:text-xl font-bold font-serif opacity-50 uppercase mb-8 ${textMain}`}>
-                            {product.category === 'hook' ? 'Usturmaça Askısı' :
-                                product.category === 'fender' ? 'Usturmaça' :
-                                    product.category === 'cover' ? 'Usturmaça Kılıfı' :
-                                        product.category === 'ladder' ? 'Pilot Merdiveni' : ''}
+                            {product.categoryName}
                         </h1>
 
                         <p className={`text-lg leading-relaxed mb-10 ${textSub}`}>

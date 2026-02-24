@@ -123,7 +123,7 @@ export const ProductCarousel = () => {
                             {/* CTA Button */}
                             <div>
                                 <Link
-                                    href={`/urunler/${activeProduct.slug}`}
+                                    href={`/${activeProduct.categorySlug}/${activeProduct.slug}`}
                                     className="inline-flex items-center gap-3 px-8 py-4 bg-brand-gold text-white font-bold uppercase tracking-wider rounded-sm hover:bg-brand-gold/90 transition-all group w-full md:w-auto justify-center md:justify-start"
                                 >
                                     {t('view_details_btn')} <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />

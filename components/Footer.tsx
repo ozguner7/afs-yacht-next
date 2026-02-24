@@ -49,13 +49,13 @@ export const Footer = () => {
                             <h4 className="text-white text-sm uppercase tracking-widest font-bold text-brand-gold">{t('nav_collection')}</h4>
                         </div>
                         <ul className="space-y-3 text-sm font-light">
-                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/koleksiyon#hooks">{t('footer_col_hooks')}</Link></li>
-                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/koleksiyon#fenders">{t('cat_fenders')}</Link></li>
-                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/koleksiyon#lines">{t('cat_fender_lines')}</Link></li>
-                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/koleksiyon#covers">{t('cat_fender_covers')}</Link></li>
-                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/koleksiyon#cleats">{t('footer_col_cleats')}</Link></li>
-                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/koleksiyon#ladders">{t('footer_col_ladders')}</Link></li>
-                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/koleksiyon#dinghy-hangers">{t('cat_dinghy_hangers')}</Link></li>
+                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/usturmaca-askisi">{t('footer_col_hooks')}</Link></li>
+                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/usturmacalar">{t('cat_fenders')}</Link></li>
+                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/usturmaca-baglama-halati">{t('cat_fender_lines')}</Link></li>
+                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/usturmaca-kiliflari">{t('cat_fender_covers')}</Link></li>
+                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/koc-boynuzu">{t('footer_col_cleats')}</Link></li>
+                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/merdivenler">{t('footer_col_ladders')}</Link></li>
+                            <li className="hover:text-brand-gold cursor-pointer transition-colors"><Link href="/bot-baglama-askisi">{t('cat_dinghy_hangers')}</Link></li>
                         </ul>
                     </div>
 

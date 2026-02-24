@@ -43,7 +43,7 @@ export const Hero = () => {
                     </h2>
                     <div className={`w-24 h-1 bg-brand-gold mb-10 animate-scale-x delay-200 mx-auto md:mx-0`}></div>
                     <div className="animate-fade-in-up delay-300">
-                        <Link href="/koleksiyon" className="group inline-flex items-center gap-4 px-8 py-4 bg-brand-gold text-white text-sm uppercase tracking-[0.2em] hover:bg-brand-gold/90 transition-all duration-300 font-bold border border-brand-gold shadow-lg rounded-sm">
+                        <Link href="/usturmacalar" className="group inline-flex items-center gap-4 px-8 py-4 bg-brand-gold text-white text-sm uppercase tracking-[0.2em] hover:bg-brand-gold/90 transition-all duration-300 font-bold border border-brand-gold shadow-lg rounded-sm">
                             {t('hero_cta')} <ArrowRight className="group-hover:translate-x-1 transition-transform" />
                         </Link>
                     </div>

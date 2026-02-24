@@ -4,6 +4,8 @@ export interface Product {
     slug: string;
     description: string;
     category: 'hook' | 'fender' | 'cover' | 'ladder' | 'line' | 'hanger' | 'cleat' | 'dinghy-hanger';
+    categorySlug: string;
+    categoryName: string;
     specs: string[];
     fullDescription: {
         title: string;
@@ -24,6 +26,8 @@ export const productsData: Product[] = [
         name: "AFS Thetis",
         slug: "afs-thetis",
         category: "hook",
+        categorySlug: "usturmaca-askisi",
+        categoryName: "Usturmaça Askısı",
         image: "/afs-thetis.png",
         emailImage: "https://afsyacht.com/wp-content/uploads/2024/06/Usturmaca-Askisi-AFS-Yacht-1-2-1536x1394.png",
         description: "Harken 280 Cam cleat ve özel tasarım paslanmaz ip yuvası ile donatılmış, Ø6-16 mm halat çapına uygun, estetik ve dayanıklı usturmaça askısı.",
@@ -62,6 +66,8 @@ export const productsData: Product[] = [
         name: "AFS Pontos",
         slug: "afs-pontos",
         category: "hook",
+        categorySlug: "usturmaca-askisi",
+        categoryName: "Usturmaça Askısı",
         image: "/afs-pontos.png",
         emailImage: "https://afsyacht.com/wp-content/uploads/2024/06/Usturmaca-Askisi-AFS-Yacht-2-1935x2048.png",
         description: "Harken 491 Cam cleat ile güçlü tutuş sağlayan, Ø6-16 mm halat çapına uygun, premium deri kaplamalı usturmaça askısı.",
@@ -100,6 +106,8 @@ export const productsData: Product[] = [
         name: "AFS Argos",
         slug: "afs-argos",
         category: "hook",
+        categorySlug: "usturmaca-askisi",
+        categoryName: "Usturmaça Askısı",
         image: "/afs-argos.png",
         emailImage: "https://afsyacht.com/wp-content/uploads/2024/06/Usturmaca-Askisi-AFS-Yacht-3-1536x1251.png",
         description: "Harken 150 Cam cleat ve Harken 237 ip yuvası ile kompakt ve şık tasarım. Ø3-13 mm halat çapları için idealdir.",
@@ -139,6 +147,8 @@ export const productsData: Product[] = [
         name: "AFS Usturmaça Tip 1",
         slug: "afs-usturmaca-tip-1",
         category: "fender",
+        categorySlug: "usturmacalar",
+        categoryName: "Usturmaçalar",
         image: "/usturmaca-tip-1.webp",
         emailImage: "https://afs-yacht-next.onrender.com/_next/image?url=%2Fusturmaca-tip-1.webp&w=3840&q=75",
         description: "Teknenizi darbelerden koruyan, üstün kaliteli malzemeden üretilmiş dayanıklı usturmaça.",
@@ -171,6 +181,8 @@ export const productsData: Product[] = [
         name: "AFS Usturmaça Kılıfı",
         slug: "afs-usturmaca-kilifi",
         category: "cover",
+        categorySlug: "usturmaca-kiliflari",
+        categoryName: "Usturmaça Kılıfları",
         image: "/afs-yacht-usturmaca-kilif.png",
         detailImage: "/afs-yacht-usturmaca-kilifi.png",
         emailImage: "https://afs-yacht-next.onrender.com/_next/image?url=%2Fafs-yacht-usturmaca-kilifi.png&w=3840&q=75",
@@ -198,6 +210,8 @@ export const productsData: Product[] = [
         name: "AFS Koç Boynuzu",
         slug: "afs-koc-boynuzu",
         category: "cleat",
+        categorySlug: "koc-boynuzu",
+        categoryName: "Koç Boynuzu",
         image: "/afs-yacht-koc-boynuzu.webp",
         emailImage: "https://afs-yacht-next.onrender.com/_next/image?url=%2Fafs-yacht-koc-boynuzu.webp&w=3840&q=75",
         description: "Paslanmaz çelikten üretilen, yüksek mukavemetli ve estetik koç boynuzu.",
@@ -224,6 +238,8 @@ export const productsData: Product[] = [
         name: "AFS Bot Bağlama Askısı",
         slug: "afs-bot-baglama-askisi",
         category: "dinghy-hanger",
+        categorySlug: "bot-baglama-askisi",
+        categoryName: "Bot Bağlama Askısı",
         image: "/bot-baglama-askisi.webp",
         emailImage: "https://afs-yacht-next.onrender.com/_next/image?url=%2Fbot-baglama-askisi.webp&w=640&q=75",
         description: "Botunuzu güvenle bağlamanız için tasarlanmış, pratik ve dayanıklı askı çözümü.",
@@ -249,6 +265,8 @@ export const productsData: Product[] = [
         name: "AFS Usturmaça Bağlama Halatı Tip 1",
         slug: "afs-usturmaca-baglama-halati-tip-1",
         category: "line",
+        categorySlug: "usturmaca-baglama-halati",
+        categoryName: "Usturmaça Bağlama Halatı",
         image: "/usturmaca-baglama-halati-tip-1.webp",
         emailImage: "https://afs-yacht-next.onrender.com/_next/image?url=%2Fusturmaca-baglama-halati-tip-1.webp&w=3840&q=75",
         description: "Usturmaçalarınızı güvenle bağlamanız için özel olarak üretilmiş, yüksek mukavemetli halat.",
@@ -274,6 +292,8 @@ export const productsData: Product[] = [
         name: "AFS Usturmaça Bağlama Halatı Tip 2",
         slug: "afs-usturmaca-baglama-halati-tip-2",
         category: "line",
+        categorySlug: "usturmaca-baglama-halati",
+        categoryName: "Usturmaça Bağlama Halatı",
         image: "/usturmaca-baglama-halati-tip-2.webp",
         emailImage: "https://afs-yacht-next.onrender.com/_next/image?url=%2Fusturmaca-baglama-halati-tip-2.webp&w=3840&q=75",
         description: "Premium görünüm ve üstün dayanıklılık sunan özel seri usturmaça halatı.",

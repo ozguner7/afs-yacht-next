@@ -85,19 +85,19 @@ export const Navbar = () => {
 
                     {/* Collection Dropdown */}
                     <div className="relative group">
-                        <Link href="/koleksiyon" className={`text-sm uppercase tracking-widest transition-colors duration-300 font-medium flex items-center gap-1 ${textColor} ${hoverColor}`}>
+                        <Link href="/usturmacalar" className={`text-sm uppercase tracking-widest transition-colors duration-300 font-medium flex items-center gap-1 ${textColor} ${hoverColor}`}>
                             {t('nav_collection')}
                             <ChevronRight size={14} className="group-hover:rotate-90 transition-transform duration-300" />
                         </Link>
                         <div className="absolute top-full left-0 mt-6 w-64 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
                             <div className={`rounded-sm border-t-2 border-brand-gold overflow-hidden ${darkMode ? 'bg-brand-navy border-x border-b border-slate-800' : 'bg-white border-x border-b border-slate-100'}`}>
-                                <Link href="/koleksiyon#hooks" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('footer_col_hooks')}</Link>
-                                <Link href="/koleksiyon#fenders" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('cat_fenders')}</Link>
-                                <Link href="/koleksiyon#lines" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('cat_fender_lines')}</Link>
-                                <Link href="/koleksiyon#covers" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('cat_fender_covers')}</Link>
-                                <Link href="/koleksiyon#cleats" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('footer_col_cleats')}</Link>
-                                <Link href="/koleksiyon#ladders" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('footer_col_ladders')}</Link>
-                                <Link href="/koleksiyon#dinghy-hangers" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('cat_dinghy_hangers')}</Link>
+                                <Link href="/usturmaca-askisi" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('footer_col_hooks')}</Link>
+                                <Link href="/usturmacalar" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('cat_fenders')}</Link>
+                                <Link href="/usturmaca-baglama-halati" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('cat_fender_lines')}</Link>
+                                <Link href="/usturmaca-kiliflari" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('cat_fender_covers')}</Link>
+                                <Link href="/koc-boynuzu" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('footer_col_cleats')}</Link>
+                                <Link href="/merdivenler" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium border-b border-slate-50 dark:border-slate-800 hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('footer_col_ladders')}</Link>
+                                <Link href="/bot-baglama-askisi" className={`block px-6 py-3 text-xs uppercase tracking-wider font-medium hover:bg-brand-gold hover:text-white transition-all duration-200 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{t('cat_dinghy_hangers')}</Link>
                             </div>
                         </div>
                     </div>
@@ -209,13 +209,13 @@ export const Navbar = () => {
 
                         <div className={`overflow-hidden transition-all duration-300 ${openSection === 'collection' ? 'max-h-[500px] opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
                             <div className="pl-4 flex flex-col space-y-4 border-l border-white/20 ml-1">
-                                <Link href="/koleksiyon#hooks" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('footer_col_hooks')}</Link>
-                                <Link href="/koleksiyon#fenders" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('cat_fenders')}</Link>
-                                <Link href="/koleksiyon#lines" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('cat_fender_lines')}</Link>
-                                <Link href="/koleksiyon#covers" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('cat_fender_covers')}</Link>
-                                <Link href="/koleksiyon#cleats" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('footer_col_cleats')}</Link>
-                                <Link href="/koleksiyon#ladders" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('footer_col_ladders')}</Link>
-                                <Link href="/koleksiyon#dinghy-hangers" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('cat_dinghy_hangers')}</Link>
+                                <Link href="/usturmaca-askisi" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('footer_col_hooks')}</Link>
+                                <Link href="/usturmacalar" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('cat_fenders')}</Link>
+                                <Link href="/usturmaca-baglama-halati" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('cat_fender_lines')}</Link>
+                                <Link href="/usturmaca-kiliflari" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('cat_fender_covers')}</Link>
+                                <Link href="/koc-boynuzu" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('footer_col_cleats')}</Link>
+                                <Link href="/merdivenler" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('footer_col_ladders')}</Link>
+                                <Link href="/bot-baglama-askisi" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-white/80 hover:text-white transition-colors">{t('cat_dinghy_hangers')}</Link>
                             </div>
                         </div>
                     </div>

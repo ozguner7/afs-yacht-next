@@ -79,7 +79,7 @@ export const Products = () => {
                     {products.map((product, index) => (
                         <div key={index} className="flex flex-col items-center text-center group h-full bg-transparent max-w-[60%] mx-auto w-full">
                             {/* Top Section: Title & Image */}
-                            <Link href={`/urunler/afs-${product.id}`} className="flex flex-col items-center w-full cursor-pointer">
+                            <Link href={`/usturmaca-askisi/afs-${product.id}`} className="flex flex-col items-center w-full cursor-pointer">
                                 <h4 className={`text-3xl font-serif mb-8 ${headingColor} hover:text-brand-gold transition-colors`}>{product.name}</h4>
 
                                 {/* Image Section */}

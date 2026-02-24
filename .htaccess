@@ -9,6 +9,18 @@
   # Redirect non-www to www
   RewriteCond %{HTTP_HOST} ^afsyacht\.com\.tr [NC]
   RewriteRule ^(.*)$ https://www.afsyacht.com.tr/$1 [L,R=301]
+
+  # SEO Redirects for removed /koleksiyon and /urunler routes
+  RewriteRule ^koleksiyon/?$ /usturmacalar [R=301,L]
+  RewriteRule ^urunler/afs-thetis/?$ /usturmaca-askisi/afs-thetis [R=301,L]
+  RewriteRule ^urunler/afs-pontos/?$ /usturmaca-askisi/afs-pontos [R=301,L]
+  RewriteRule ^urunler/afs-argos/?$ /usturmaca-askisi/afs-argos [R=301,L]
+  RewriteRule ^urunler/afs-usturmaca-tip-1/?$ /usturmacalar/afs-usturmaca-tip-1 [R=301,L]
+  RewriteRule ^urunler/afs-usturmaca-kilifi/?$ /usturmaca-kiliflari/afs-usturmaca-kilifi [R=301,L]
+  RewriteRule ^urunler/afs-koc-boynuzu/?$ /koc-boynuzu/afs-koc-boynuzu [R=301,L]
+  RewriteRule ^urunler/afs-bot-baglama-askisi/?$ /bot-baglama-askisi/afs-bot-baglama-askisi [R=301,L]
+  RewriteRule ^urunler/afs-usturmaca-baglama-halati-tip-1/?$ /usturmaca-baglama-halati/afs-usturmaca-baglama-halati-tip-1 [R=301,L]
+  RewriteRule ^urunler/afs-usturmaca-baglama-halati-tip-2/?$ /usturmaca-baglama-halati/afs-usturmaca-baglama-halati-tip-2 [R=301,L]
  
   RewriteRule ^([^/]+)/$ /$1.html [L]
   RewriteRule ^([^/]+)/([^/]+)/$ /$1/$2.html [L]
