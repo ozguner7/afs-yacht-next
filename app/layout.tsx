@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope, Playfair_Display } from "next/font/google";
-import { ThemeProvider } from "@/components/ThemeContext";
-import { ThemeWrapper } from "@/components/ThemeWrapper";
+
 import { Providers } from "@/components/Providers";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -19,7 +18,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "AFS Yacht - En iyilerin tercihi",
+  title: "AFS Yacht - Gerçek Deniz Koşulları İçin Özel Tasarım",
   description: "Zanaatın Deniz Hali - Handmade Marine Goods",
   icons: {
     icon: '/logo.png',
@@ -38,7 +37,6 @@ export default function RootLayout({
       >
         <Providers>
           {children}
-          <FloatingWhatsapp />
         </Providers>
       </body>
     </html>

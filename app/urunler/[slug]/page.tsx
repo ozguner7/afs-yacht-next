@@ -134,7 +134,7 @@ export default function ProductPage() {
                                 rel="noopener noreferrer"
                                 className={`px-8 py-4 border-2 font-bold uppercase tracking-widest text-sm rounded-sm transition-colors text-center ${darkMode ? 'border-white text-white hover:bg-white hover:text-brand-navy' : 'border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white'}`}
                             >
-                                WhatsApp'tan Sorun
+                                WhatsApp&apos;tan Sorun
                             </a>
                         </div>
                     </div>

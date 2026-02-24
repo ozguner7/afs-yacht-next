@@ -19,9 +19,41 @@ export const SatisfactionPolicy = () => {
                         <Shield size={48} />
                     </div>
                     <h3 className={`text-3xl font-serif mb-6 ${headingClass}`}>{t('policy_title')}</h3>
-                    <p className={`text-lg leading-relaxed ${textClass}`}>
-                        {t('policy_desc')}
-                    </p>
+                    <div className={`text-lg leading-relaxed ${textClass} text-left`}>
+                        {t('policy_desc').split('\n').map((line, index) => {
+                            if (line.trim().startsWith('-')) {
+                                // List item
+                                const content = line.trim().substring(1).trim();
+                                const parts = content.split(/(\*\*.*?\*\*)/g);
+                                return (
+                                    <div key={index} className="flex items-start mb-2 pl-4">
+                                        <span className="mr-2">•</span>
+                                        <span>
+                                            {parts.map((part, i) => {
+                                                if (part.startsWith('**') && part.endsWith('**')) {
+                                                    return <strong key={i} className="font-semibold text-brand-gold">{part.slice(2, -2)}</strong>;
+                                                }
+                                                return part;
+                                            })}
+                                        </span>
+                                    </div>
+                                );
+                            } else {
+                                // Regular paragraph
+                                const parts = line.split(/(\*\*.*?\*\*)/g);
+                                return (
+                                    <p key={index} className="mb-4 last:mb-0">
+                                        {parts.map((part, i) => {
+                                            if (part.startsWith('**') && part.endsWith('**')) {
+                                                return <strong key={i} className="font-semibold text-brand-gold">{part.slice(2, -2)}</strong>;
+                                            }
+                                            return part;
+                                        })}
+                                    </p>
+                                );
+                            }
+                        })}
+                    </div>
                 </div>
             </div>
         </section>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "@/components/ThemeContext";
-import Image from "next/image";
+
 
 export default function HakkimizdaPage() {
     const { darkMode } = useTheme();
@@ -17,7 +17,7 @@ export default function HakkimizdaPage() {
                     </p>
 
                     <p>
-                        Kurulduğumuz günden bu yana, <span className="italic">"Denizdeki Güvenliğiniz ve Konforunuz"</span> ilkesiyle hareket ediyoruz. Üretimini ve tedariğini gerçekleştirdiğimiz paslanmaz çelik donanımlar (koç boynuzları, askı sistemleri), özel halat çözümleri ve usturmaça ekipmanları ile teknenizin her detayında mükemmelliği hedefliyoruz.
+                        Kurulduğumuz günden bu yana, <span className="italic">&quot;Denizdeki Güvenliğiniz ve Konforunuz&quot;</span> ilkesiyle hareket ediyoruz. Üretimini ve tedariğini gerçekleştirdiğimiz paslanmaz çelik donanımlar (koç boynuzları, askı sistemleri), özel halat çözümleri ve usturmaça ekipmanları ile teknenizin her detayında mükemmelliği hedefliyoruz.
                     </p>
 
                     <div className="bg-brand-gold/10 p-8 rounded-sm my-10 border-l-4 border-brand-gold">
