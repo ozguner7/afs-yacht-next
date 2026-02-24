@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "./ThemeContext";
@@ -16,6 +16,26 @@ export const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [userOpenedLang, setUserOpenedLang] = useState(false); // Separate state for mobile lang dropdown
     const [openSection, setOpenSection] = useState<string | null>(null); // Accordion state
+
+    const desktopLangRef = useRef<HTMLDivElement>(null);
+    const mobileLangRef = useRef<HTMLDivElement>(null);
+
+    // Close language dropdowns when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (desktopLangRef.current && !desktopLangRef.current.contains(event.target as Node)) {
+                setIsLangOpen(false);
+            }
+            if (mobileLangRef.current && !mobileLangRef.current.contains(event.target as Node)) {
+                setUserOpenedLang(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -111,7 +131,7 @@ export const Navbar = () => {
                             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
                         </button>
 
-                        <div className="relative">
+                        <div className="relative" ref={desktopLangRef}>
                             <button
                                 onClick={() => setIsLangOpen(!isLangOpen)}
                                 className={`flex items-center gap-2 text-xs font-bold transition-colors ${textColor} ${hoverColor}`}
@@ -235,7 +255,7 @@ export const Navbar = () => {
                         </button>
 
                         {/* Language Dropdown */}
-                        <div className="relative">
+                        <div className="relative" ref={mobileLangRef}>
                             <button
                                 onClick={() => setUserOpenedLang(!userOpenedLang)}
                                 className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
