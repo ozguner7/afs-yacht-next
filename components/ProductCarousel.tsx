@@ -57,11 +57,11 @@ export const ProductCarousel = () => {
     return (
         <section className={`py-0 relative overflow-hidden ${darkMode ? 'bg-slate-900 border-y border-slate-800' : 'bg-slate-50 border-y border-slate-200'}`}>
             <div className="container mx-auto px-0 md:px-6">
-                <div className="flex flex-col md:flex-row h-[500px] md:h-[600px]">
+                <div className="flex flex-col md:flex-row h-auto md:h-[600px]">
 
-                    {/* LEFT SIDE: Image Slider */}
+                    {/* LEFT SIDE: Image Slider (Top on mobile) */}
                     <div
-                        className="w-full md:w-1/2 relative bg-white overflow-hidden group"
+                        className="w-full md:w-1/2 relative bg-white overflow-hidden group min-h-[400px] md:min-h-0"
                         onMouseEnter={() => setIsPaused(true)}
                         onMouseLeave={() => setIsPaused(false)}
                         onTouchStart={() => setIsPaused(true)}
