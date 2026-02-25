@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { productsData } from "@/data/products";
 import Link from "next/link";
 import Image from "next/image";
@@ -9,6 +10,19 @@ export async function generateStaticParams() {
     return categories.map((categorySlug) => ({
         categorySlug,
     }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ categorySlug: string }> }): Promise<Metadata> {
+    const { categorySlug } = await params;
+    const categoryProducts = productsData.filter(p => p.categorySlug === categorySlug);
+
+    if (categoryProducts.length === 0) return {};
+
+    const categoryName = categoryProducts[0].categoryName;
+    return {
+        title: `AFS Yacht | ${categoryName}`,
+        description: `AFS Yacht ${categoryName} koleksiyonumuzu keşfedin.`,
+    };
 }
 
 export default async function CategoryPage({ params }: { params: Promise<{ categorySlug: string }> }) {

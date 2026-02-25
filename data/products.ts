@@ -18,6 +18,8 @@ export interface Product {
         label: string;
         items: string[];
     }[];
+    metaTitle?: string;
+    metaDescription?: string;
 }
 
 export const productsData: Product[] = [
@@ -31,6 +33,8 @@ export const productsData: Product[] = [
         image: "/afs-thetis.png",
         emailImage: "https://afsyacht.com/wp-content/uploads/2024/06/Usturmaca-Askisi-AFS-Yacht-1-2-1536x1394.png",
         description: "Harken 280 Cam cleat ve özel tasarım paslanmaz ip yuvası ile donatılmış, Ø6-16 mm halat çapına uygun, estetik ve dayanıklı usturmaça askısı.",
+        metaTitle: "Harken 280 Deri Usturmaça Askısı | Özel Tasarım & Lüks | AFS Yacht",
+        metaDescription: "AFS Yacht'tan Harken 280 Cam cleat, paslanmaz çelik ve doğal deri ile üretilmiş özel tasarım usturmaça askısı. Yatınız için estetik, dayanıklı ve %100 güvenceli çözüm.",
         specs: [
             "Harken 280 Cam cleat (Kıstırmaç) kullanılır",
             "Kendi imalatımız paslanmaz ip yuvası kullanılır",
@@ -71,6 +75,8 @@ export const productsData: Product[] = [
         image: "/afs-pontos.png",
         emailImage: "https://afsyacht.com/wp-content/uploads/2024/06/Usturmaca-Askisi-AFS-Yacht-2-1935x2048.png",
         description: "Harken 491 Cam cleat ile güçlü tutuş sağlayan, Ø6-16 mm halat çapına uygun, premium deri kaplamalı usturmaça askısı.",
+        metaTitle: "Harken 491 Deri Usturmaça Askısı | Paslanmaz & Özel Tasarım",
+        metaDescription: "Harken 491 Deri Usturmaça Askısı: 316L paslanmaz çelik, lüks deri kaplama ve özel tasarım. Mega yatlar için 30 yıllık tecrübeyle %100 ürün güvencesi.",
         specs: [
             "Harken 491 Cam cleat (Kıstırmaç) kullanılır",
             "Kendi imalatımız paslanmaz ip yuvası kullanılır",
@@ -111,6 +117,8 @@ export const productsData: Product[] = [
         image: "/afs-argos.png",
         emailImage: "https://afsyacht.com/wp-content/uploads/2024/06/Usturmaca-Askisi-AFS-Yacht-3-1536x1251.png",
         description: "Harken 150 Cam cleat ve Harken 237 ip yuvası ile kompakt ve şık tasarım. Ø3-13 mm halat çapları için idealdir.",
+        metaTitle: "Özel Tasarım Harken Usturmaça Askısı | Deri & Paslanmaz Çelik",
+        metaDescription: "Mega yatlar için Harken 150 Cam Cleat'li, Ø3-13mm halatlara özel usturmaça askısı. El işçiliğiyle deri, 316L paslanmaz çelikten üretildi. 2 yıl garanti ile AFS Yacht farkını yaşayın.",
         specs: [
             "Harken 150 Cam cleat (Kıstırmaç) kullanılır",
             "Harken 237 ip yuvası kullanılır",
@@ -152,6 +160,8 @@ export const productsData: Product[] = [
         image: "/usturmaca-tip-1.webp",
         emailImage: "https://afs-yacht-next.onrender.com/_next/image?url=%2Fusturmaca-tip-1.webp&w=3840&q=75",
         description: "Teknenizi darbelerden koruyan, üstün kaliteli malzemeden üretilmiş dayanıklı usturmaça.",
+        metaTitle: "AFS Usturmaça | Teknenizi Darbelere Karşı Koruyan Dayanıklı PVC",
+        metaDescription: "Teknenizi iskele ve diğer teknelerle temasta oluşabilecek hasarlardan koruyun. AFS'nin UV dayanıklı, yüksek basınçlı ve eksiz PVC usturmaçaları 30 yıllık tecrübeyle üretildi.",
         options: [
             {
                 label: "Ebat",
@@ -187,6 +197,8 @@ export const productsData: Product[] = [
         detailImage: "/afs-yacht-usturmaca-kilifi.png",
         emailImage: "https://afs-yacht-next.onrender.com/_next/image?url=%2Fafs-yacht-usturmaca-kilifi.png&w=3840&q=75",
         description: "Usturmaçalarınızı UV ışınlarından ve aşınmadan koruyan, estetik ve dayanıklı kılıf.",
+        metaTitle: "Usturmaça Kılıfı | UV Korumalı, Şık ve Dayanıklı Tekne Kılıfları",
+        metaDescription: "AFS Yacht usturmaça kılıfları ile teknenizin usturmaçalarını UV, aşınma ve deniz suyuna karşı koruyun. Şık, dayanıklı, leke tutmaz ve boyayı koruyan modelleri keşfedin.",
         specs: [
             "Yüksek kaliteli, UV dirençli kumaş",
             "Leke tutmaz ve kolay temizlenir",
@@ -215,6 +227,8 @@ export const productsData: Product[] = [
         image: "/afs-yacht-koc-boynuzu.webp",
         emailImage: "https://afs-yacht-next.onrender.com/_next/image?url=%2Fafs-yacht-koc-boynuzu.webp&w=3840&q=75",
         description: "Paslanmaz çelikten üretilen, yüksek mukavemetli ve estetik koç boynuzu.",
+        metaTitle: "AFS 316L Paslanmaz Tekne Koç Boynuzu | Yüksek Mukavemet ve Estetik",
+        metaDescription: "AFS Yacht'tan 316L paslanmaz çelik tekne koç boynuzu ile güvenliği ve estetiği birleştirin. Yüksek mukavemet, korozyon direnci ve ayna polisajı.",
         specs: [
             "316L kalite paslanmaz çelik",
             "Ayna polisajlı yüzey",
@@ -243,6 +257,8 @@ export const productsData: Product[] = [
         image: "/bot-baglama-askisi.webp",
         emailImage: "https://afs-yacht-next.onrender.com/_next/image?url=%2Fbot-baglama-askisi.webp&w=640&q=75",
         description: "Botunuzu güvenle bağlamanız için tasarlanmış, pratik ve dayanıklı askı çözümü.",
+        metaTitle: "AFS Yacht Bot Askısı | Güvenli, Pratik ve Dayanıklı Bağlama Çözümü",
+        metaDescription: "AFS Yacht'un 30 yıllık mühendislik tecrübesiyle tasarlanan UV ve deniz suyuna dayanıklı bot askısı ile güvenli, pratik ve hızlı bağlama deneyimi yaşayın. Güverte düzeninizi koruyan kompakt çözüm.",
         specs: [
             "Güçlendirilmiş yapı",
             "Kolay kullanım mekanizması",
@@ -270,6 +286,8 @@ export const productsData: Product[] = [
         image: "/usturmaca-baglama-halati-tip-1.webp",
         emailImage: "https://afs-yacht-next.onrender.com/_next/image?url=%2Fusturmaca-baglama-halati-tip-1.webp&w=3840&q=75",
         description: "Usturmaçalarınızı güvenle bağlamanız için özel olarak üretilmiş, yüksek mukavemetli halat.",
+        metaTitle: "AFS Yacht Usturmaça Halatı: Yüksek Mukavemet, UV ve Tuzlu Suya Dayanıklı",
+        metaDescription: "AFS Yacht'ın yüksek mukavemetli usturmaça halatı ile denizdeki güvenliği artırın. UV, tuzlu su ve aşınmaya dayanıklı yapısıyla usturmaçalarınızı her koşulda güvenle bağlayın.",
         specs: [
             "Yüksek kopma mukavemeti",
             "UV ışınlarına ve tuzlu suya dayanıklı",
@@ -297,6 +315,8 @@ export const productsData: Product[] = [
         image: "/usturmaca-baglama-halati-tip-2.webp",
         emailImage: "https://afs-yacht-next.onrender.com/_next/image?url=%2Fusturmaca-baglama-halati-tip-2.webp&w=3840&q=75",
         description: "Premium görünüm ve üstün dayanıklılık sunan özel seri usturmaça halatı.",
+        metaTitle: "AFS Yacht Premium Usturmaça Halatı | Dayanıklı ve Estetik Tekne Halatı",
+        metaDescription: "AFS Yacht özel seri usturmaça halatları, 30 yıllık tecrübeyle tasarlanmıştır. Üstün dayanıklılık, yüksek güvenlik, sürtünme direnci ve tekneyi çizmeyen yumuşak doku sunar.",
         specs: [
             "Premium dokuma yapısı",
             "Yüksek yük kapasitesi",
